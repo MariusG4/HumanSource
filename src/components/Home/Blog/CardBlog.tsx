@@ -53,7 +53,7 @@ const CardBlog = ({ data, titlu, slug, imageUrl, id, params, content }: ICardBlo
 		<div
 			onMouseLeave={handleMouseLeave}
 			onMouseEnter={handleMouseEnter}
-			className="group   relative flex h-[400px]   w-full flex-col justify-between overflow-hidden  rounded-2xl border-none bg-transparent text-[#383A3C] shadow  transition   md:h-[500px]  "
+			className="group   relative flex h-[430px]   w-full flex-col justify-between overflow-hidden  rounded-2xl border-none bg-transparent text-[#383A3C] shadow  transition   md:h-[500px]  "
 		>
 			<div
 				key="mask"
