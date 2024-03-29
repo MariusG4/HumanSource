@@ -96,7 +96,7 @@ const CardBlog = ({ data, titlu, slug, imageUrl, id, params, content }: ICardBlo
 								: `${paragraph.substring(0, 160)} ${paragraphLength >= 160 ? "..." : ""} `}
 						</Typography>
 						<button
-							className={`z-50 mb-4 h-[10%] bg-transparent py-2 text-start text-sm text-gri-bg shadow-none hover:scale-95 hover:shadow-none md:mb-8 md:mt-4 md:py-5 md:text-base ${
+							className={`z-50 mb-4 h-[10%] overflow-visible bg-transparent py-2 text-start text-sm text-gri-bg shadow-none hover:scale-95 hover:shadow-none md:mb-8 md:mt-4 md:py-5 md:text-base ${
 								hovered && "text-alb-site"
 							}`}
 							onClick={() => {
