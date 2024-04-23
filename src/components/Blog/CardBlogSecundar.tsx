@@ -45,7 +45,7 @@ const CardBlogSecundar = ({ id, date, title, photo, categories, params, slug }: 
 					<Typography variant="small" className="text-start text-gri-brand opacity-50">
 						{formatDate(date, params)}
 					</Typography>
-					<Typography variant="h4" className=" text-2xl font-[500] text-gri-brand">
+					<Typography variant="h4" className="text-base font-[500] text-gri-brand md:text-2xl">
 						{title}
 					</Typography>
 					<div className="mt-auto flex flex-col justify-self-end">
