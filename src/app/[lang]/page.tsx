@@ -59,7 +59,7 @@ export default function Home({ params }: { params: { lang: string; country: stri
 						<BlogSection params={params} />
 					</Suspense>
 
-					<ParteneriSection />
+				
 				</div>
 			</div>
 		</div>

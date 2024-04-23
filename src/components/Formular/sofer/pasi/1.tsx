@@ -1,5 +1,5 @@
 import FormWrapper from "../../FormWrapper";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import CardRemorca from "../CardRemorca";
 import Cisterna from "../../../../../public/imagini/formular/sofer/negru/cisterna.svg";
 import CisternaAlb from "../../../../../public/imagini/formular/sofer/alb/cisterna.svg";
