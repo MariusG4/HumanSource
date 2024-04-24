@@ -62,7 +62,7 @@ type CustomRendererProps = ComponentProps<typeof DocumentRenderer>;
 
 const defaultElementRenderers: CustomRendererProps["renderers"] = {
 	block: {
-		block: React.Fragment,
+		block: React.Fragment as any,
 
 		layout: (props) => {
 			return <BlockLayout {...props} />;

@@ -42,10 +42,13 @@ const HeroSection = ({ params }: { params: { lang: string; country: string } }) 
 			</div>
 			<div className="flex px-5">
 				<CarduriHero params={params} />
+				
 			</div>
-			<div><Typography variant="h2">Agentie munca temporara,recruteaza pentru firma ta la cele mai inalte standarde</Typography></div>
+			<div >
+				<Typography variant="h2" className="px-6 pt-10 text-center text-xl font-bold text-alb-site md:text-3xl md:leading-normal ">{t("hero.indemn2")}</Typography></div>
 		</section>
 	);
 };
 
 export default HeroSection;
+

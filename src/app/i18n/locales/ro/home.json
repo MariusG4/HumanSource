@@ -4,12 +4,13 @@
 		"subtitlu": "Construiește-ți viitorul  alături de ",
 		"subtitlu_h2":"Human Source",
 		"indemn": "Alege să colaborezi cu noi pentru job-ul tau de vis sau pentru gasirea candidatului potrivit.",
+		"indemn2": "Agentie munca temporara,recruteaza pentru firma ta la cele mai inalte standarde",
 		"card1": {
 			"titlu": "Angajator",
 			"continut": "Firma care are nevoie de serviciile noastre",
 			"buton": "Construeste-ti echipa"
 		},
-		"card2": { "titlu": "Muncitor", "continut": "Iti cauti un loc de munca?", "buton": "Locuri de munca" }
+		"card2": { "titlu": "Candidat", "continut": "Iti cauti un loc de munca?", "buton": "Locuri de munca" }
 	},
 	"avantaje": {
 		"titlu": "Firma de recrutare strainatate - Avantajele serviciilor Human Source",
