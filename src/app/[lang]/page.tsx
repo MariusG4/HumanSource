@@ -13,6 +13,7 @@ const ServiciiSection = dynamic(() => import("@/components/Home/Servicii/Servici
 import type { Metadata } from "next";
 
 import { Suspense } from "react";
+import { userAgent } from "next/server";
 
 export const metadata: Metadata = {
 	title: "Agentie de plasare forta de munca - HumanSource ",
@@ -21,7 +22,9 @@ export const metadata: Metadata = {
 };
 
 export default function Home({ params }: { params: { lang: string; country: string } }) {
-
+	const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.userAgent);
+	console.log(userAgent);
+	console.log(isMac);
 	return (
 		<div className="mb-[-10rem] grid grid-cols-1 items-center justify-center " id="container-home">
 			<HeroSection params={params} />
