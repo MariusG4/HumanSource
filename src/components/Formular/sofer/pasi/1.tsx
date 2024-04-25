@@ -38,7 +38,7 @@ const Pas1Trasport = ({ setValue, setDisabled }: any) => {
 	const handleClick = ({ cardSelectat, valoareFormular }: IClickProps) => {
 		setValue("tipRemorca", valoareFormular);
 		setSelected(cardSelectat);
-		cookies.set("sofer-tip-remorca", cardSelectat.toString());
+		cookies.set("sofer-tip-remorca", cardSelectat.toString(), { secure: true });
 
 		setDisabled(false);
 	};

@@ -13,7 +13,7 @@ const ServiciiSection = dynamic(() => import("@/components/Home/Servicii/Servici
 import type { Metadata } from "next";
 
 import { Suspense } from "react";
-import { userAgent } from "next/server";
+
 
 export const metadata: Metadata = {
 	title: "Agentie de plasare forta de munca - HumanSource ",
@@ -21,10 +21,16 @@ export const metadata: Metadata = {
 		"Human Source ofera servicii complete: leasing personal, recrutare si selectie, administrare dosare de personal si payroll ✔ Flexibilitate",
 };
 
-export default function Home({ params }: { params: { lang: string; country: string } }) {
-	const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.userAgent);
-	console.log(userAgent);
-	console.log(isMac);
+export default function Home({
+	params,
+	searchParams,
+}: {
+	params: { lang: string; country: string };
+	searchParams: { [key: string]: string | string[] | undefined };
+}) {
+	const browser = searchParams.key;
+	console.log("browser", browser);
+
 	return (
 		<div className="mb-[-10rem] grid grid-cols-1 items-center justify-center " id="container-home">
 			<HeroSection params={params} />
@@ -62,7 +68,7 @@ export default function Home({ params }: { params: { lang: string; country: stri
 						<BlogSection params={params} />
 					</Suspense>
 
-				
+					<ParteneriSection />
 				</div>
 			</div>
 		</div>

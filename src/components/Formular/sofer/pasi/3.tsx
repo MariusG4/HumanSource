@@ -27,7 +27,7 @@ const Pas3Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("regim", "tur-retur");
 						setSelected(1);
-						cookies.set("sofer-regim", "1");
+						cookies.set("sofer-regim", "1", { secure: true });
 						setDisabled(false);
 					}}
 					type="button"
@@ -42,7 +42,7 @@ const Pas3Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("regim", "italia");
 						setSelected(2);
-						cookies.set("sofer-regim", "2");
+						cookies.set("sofer-regim", "2", { secure: true });
 						setDisabled(false);
 					}}
 					type="button"
@@ -56,7 +56,7 @@ const Pas3Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("regim", "international");
 						setSelected(3);
-						cookies.set("sofer-regim", "3");
+						cookies.set("sofer-regim", "3", { secure: true });
 						setDisabled(false);
 					}}
 					type="button"

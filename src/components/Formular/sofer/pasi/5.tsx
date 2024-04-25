@@ -22,7 +22,7 @@ const Pas5Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("echipaj", "singur");
 						setSelected(1);
-						cookies.set("sofer-echipaj", "1");
+						cookies.set("sofer-echipaj", "1", { secure: true });
 						setDisabled(false);
 					}}
 					type="button"
@@ -37,7 +37,7 @@ const Pas5Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("echipaj", "echipaj");
 						setSelected(2);
-						cookies.set("sofer-echipaj", "2");
+						cookies.set("sofer-echipaj", "2", { secure: true });
 						setDisabled(false);
 					}}
 					type="button"

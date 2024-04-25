@@ -33,20 +33,22 @@ export function middleware(request: NextRequest) {
 
 		return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url));
 	}
-	const res = NextResponse.next();
-	const { browser } = userAgent(request);
+	  const url = request.nextUrl;
+		const res = NextResponse.next();
+		const { browser } = userAgent(request);
+		const browserName = browser.name === browser.name ? browser.name : "undefined";
 
-	console.log("browser", browser);
-	// add the CORS headers to the response
-	res.headers.append("Access-Control-Allow-Credentials", "true");
-	res.headers.append("Access-Control-Allow-Origin", "https://backend.humansource.ro/api/graphql"); // replace this your actual origin
-	res.headers.append("Access-Control-Allow-Methods", "GET,DELETE,PATCH,POST,PUT");
-	res.headers.append(
-		"Access-Control-Allow-Headers",
-		"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-	);
+		request.nextUrl.searchParams.set("browser", browserName as string);
+		// add the CORS headers to the response
+		res.headers.append("Access-Control-Allow-Credentials", "true");
+		res.headers.append("Access-Control-Allow-Origin", "https://backend.humansource.ro/api/graphql"); // replace this your actual origin
+		res.headers.append("Access-Control-Allow-Methods", "GET,DELETE,PATCH,POST,PUT");
+		res.headers.append(
+			"Access-Control-Allow-Headers",
+			"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+		);
 
-	return NextResponse.next();
+		return NextResponse.rewrite(url);
 }
 
 export const config = {
