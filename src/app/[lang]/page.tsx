@@ -68,7 +68,7 @@ export default function Home({
 						<BlogSection params={params} />
 					</Suspense>
 
-					<ParteneriSection />
+					
 				</div>
 			</div>
 		</div>
