@@ -22,7 +22,7 @@ const Pas6Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("turaNoapte", "da");
 						setSelected(1);
-						cookies.set("sofer-noapte", "1", { secure: true });
+						cookies.set("sofer-noapte", "1", { secure: true, sameSite: "None" });
 						setDisabled(false);
 					}}
 					type="button"
@@ -37,7 +37,7 @@ const Pas6Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("turaNoapte", "nu");
 						setSelected(2);
-						cookies.set("sofer-noapte", "2", { secure: true });
+						cookies.set("sofer-noapte", "2", { secure: true, sameSite: "None" });
 						setDisabled(false);
 					}}
 					type="button"
