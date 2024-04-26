@@ -40,7 +40,7 @@ const Pas1Trasport = ({ setValue, setDisabled }: any) => {
 		setSelected(cardSelectat);
 		cookies.set("sofer-tip-remorca", cardSelectat.toString(), {
 			secure: true,
-			sameSite: "None",
+			sameSite: "none",
 		});
 
 		setDisabled(false);

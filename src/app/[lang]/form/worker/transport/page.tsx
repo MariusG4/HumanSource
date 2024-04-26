@@ -149,6 +149,18 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 			cookies.remove("sofer-salariu-dorit");
 		} catch (error) {
 			console.log(error);
+			console.log(
+				tipRemorca,
+				vechime,
+				regim,
+				tahograf,
+				echipaj,
+				turaNoapte,
+				lbItaliana,
+				salariuDorit,
+				ultimulSalariu,
+				category,
+			);
 		}
 	};
 

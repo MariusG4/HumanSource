@@ -23,7 +23,7 @@ const Pas4Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("tahograf", "da");
 						setSelected(1);
-						cookies.set("sofer-tahograf", "1", { secure: true, sameSite: "None" });
+						cookies.set("sofer-tahograf", "1", { secure: true, sameSite: "none" });
 						setDisabled(false);
 					}}
 					type="button"
@@ -38,7 +38,7 @@ const Pas4Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("tahograf", "nu");
 						setSelected(2);
-						cookies.set("sofer-tahograf", "2", { secure: true, sameSite: "None" });
+						cookies.set("sofer-tahograf", "2", { secure: true, sameSite: "none" });
 						setDisabled(false);
 					}}
 					type="button"

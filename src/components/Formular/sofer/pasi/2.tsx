@@ -31,7 +31,7 @@ const Checkbox = ({
 					{...register("vechime", { required: true })}
 					name="vechime"
 					onChange={(e) => {
-						cookies.set("sofer-experienta", e.target.value, { secure: true, sameSite: "None" });
+						cookies.set("sofer-experienta", e.target.value, { secure: true, sameSite: "none" });
 						console.log(e.target.value);
 						setDisabled(false);
 					}}

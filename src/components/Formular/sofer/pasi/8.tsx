@@ -19,7 +19,7 @@ const Pas8Trasport = ({ register, setDisabled }: any) => {
 					id="ultimulSalariu"
 					onChange={(e) => {
 						const value = e.target.value;
-						cookies.set("sofer-ultimul-salariu", value, { secure: true, sameSite: "None" });
+						cookies.set("sofer-ultimul-salariu", value, { secure: true, sameSite: "none" });
 						!isNaN(+value) ? setDisabled(false) : setDisabled(true);
 					}}
 					label="Raspunsul Dumneavoastra (EUR)"
