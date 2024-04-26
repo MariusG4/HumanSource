@@ -122,6 +122,18 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 					},
 				},
 			});
+			console.log(
+				tipRemorca,
+				vechime,
+				regim,
+				tahograf,
+				echipaj,
+				turaNoapte,
+				lbItaliana,
+				salariuDorit,
+				ultimulSalariu,
+				category,
+			);
 			router.push(CheckIfDefaulthLang(params, `/jobs?domeniu=transport&subDomeniu=${tipRemorca}&locatia=${regim}`));
 
 			cookies.remove("sofer-tip-remorca");
