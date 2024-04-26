@@ -32,7 +32,7 @@ const Checkbox = ({
 					name="vechime"
 					onChange={(e) => {
 						cookies.set("sofer-experienta", e.target.value, { secure: true, sameSite: "None" });
-
+						console.log(e.target.value);
 						setDisabled(false);
 					}}
 					className=" mx-4  h-4 w-4 rounded-full checked:bg-rosu-brand  focus:bg-rosu-brand focus:ring-rosu-brand "
