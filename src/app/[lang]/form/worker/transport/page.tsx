@@ -76,7 +76,7 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 	const { steps, currentStepIndex, isFirstStep, isLastStep, step, back, next } = useMultistepForm(
 		[
 			<Pas1Trasport setValue={setValue} setDisabled={setDisabled} />,
-			<Pas2Trasport register={register} setDisabled={setDisabled} />,
+			<Pas2Trasport register={register} setValue={setValue} setDisabled={setDisabled} />,
 			<Pas3Trasport setValue={setValue} setDisabled={setDisabled} />,
 			<Pas4Trasport setValue={setValue} setDisabled={setDisabled} />,
 			<Pas5Trasport setValue={setValue} setDisabled={setDisabled} />,

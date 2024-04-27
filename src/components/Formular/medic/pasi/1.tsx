@@ -9,10 +9,12 @@ const Checkbox = ({
 	register,
 	setDisabled,
 	setSearchParams,
+	setValue,
 }: {
 	varianta: string;
 	value: string;
 	register: any;
+	setValue: any;
 	setDisabled: (arg0: boolean) => void;
 
 	setSearchParams: (arg0: SetStateAction<{ experienta: string }>) => void;
@@ -33,7 +35,8 @@ const Checkbox = ({
 					{...register("experienta", { required: true })}
 					name="experienta"
 					onChange={(e) => {
-						cookies.set("sofer-experienta", e.target.value);
+						cookies.set("medic-experienta", e.target.value);
+						setValue("experienta", e.target.value);
 						setDisabled(false);
 					}}
 					className=" mx-4  h-4 w-4 rounded-full checked:bg-rosu-brand  focus:bg-rosu-brand focus:ring-rosu-brand "
@@ -45,12 +48,13 @@ const Checkbox = ({
 	);
 };
 
-const Pas1Medic = ({ register, setDisabled, setSearchParams, searchParams }: any) => {
+const Pas1Medic = ({ register, setDisabled, setSearchParams, setValue, searchParams }: any) => {
 	return (
 		<FormWrapper intrebare="Ai mai lucrat ca  Asistent Medical Generalist?">
 			<div className="flex w-full flex-col items-start gap-5">
 				{experienta.map((varianta, index) => (
 					<Checkbox
+						setValue={setValue}
 						setSearchParams={setSearchParams}
 						setDisabled={setDisabled}
 						key={index}

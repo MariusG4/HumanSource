@@ -86,6 +86,7 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 		[
 			<Pas1Medical
 				register={register}
+				setValue={setValue}
 				setSearchParams={setSearchParams}
 				searchParams={searchParams}
 				setDisabled={setDisabled}
