@@ -8,12 +8,11 @@ const AvantajeSection = dynamic(() => import("@/components/Home/Avantaje/Avantaj
 const BlogSection = dynamic(() => import("@/components/Home/Blog/BlogSection"));
 const IntrebariSection = dynamic(() => import("@/components/Home/Intrebari/IntrebariSection"));
 const NevoiSection = dynamic(() => import("@/components/Home/Nevoi/NevoiSection"));
-const ParteneriSection = dynamic(() => import("@/components/Home/Parteneri/ParteneriSection"));
+const TestimonialSection = dynamic(() => import("@/components/Home/Testimonial/TestimonialSection"));
 const ServiciiSection = dynamic(() => import("@/components/Home/Servicii/ServiciiSection"));
 import type { Metadata } from "next";
 
 import { Suspense } from "react";
-
 
 export const metadata: Metadata = {
 	title: "Agentie de plasare forta de munca - HumanSource ",
@@ -21,16 +20,7 @@ export const metadata: Metadata = {
 		"Human Source ofera servicii complete: leasing personal, recrutare si selectie, administrare dosare de personal si payroll ✔ Flexibilitate",
 };
 
-export default function Home({
-	params,
-	searchParams,
-}: {
-	params: { lang: string; country: string };
-	searchParams: { [key: string]: string | string[] | undefined };
-}) {
-	const browser = searchParams.key;
-	console.log("browser", browser);
-
+export default function Home({ params }: { params: { lang: string; country: string } }) {
 	return (
 		<div className="mb-[-10rem] grid grid-cols-1 items-center justify-center " id="container-home">
 			<HeroSection params={params} />
@@ -61,14 +51,18 @@ export default function Home({
 					<IntrebariSection params={params} />
 				</div>
 				<div
+					className="mx-1 flex flex-col items-center justify-center  bg-gri-bg pb-10 md:mx-2 md:px-16  md:pb-[0px] "
+					id="background"
+				>
+					<TestimonialSection />
+				</div>
+				<div
 					className="mx-1 flex flex-col items-center justify-center  rounded-b-[10px]  bg-white pb-12  md:mx-2 md:px-16 "
 					id="background"
 				>
 					<Suspense fallback={<Spinner />}>
 						<BlogSection params={params} />
 					</Suspense>
-
-					
 				</div>
 			</div>
 		</div>

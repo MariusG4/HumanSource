@@ -9,6 +9,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineMail } from "react-icons/ai";
 import { FiPhone } from "react-icons/fi";
 import { MdPersonOutline } from "react-icons/md";
+import SelectDateBirth from "./DatePicker";
 
 type Inputs = {
 	nume: string;
@@ -35,10 +36,12 @@ const FormularAplica = ({
 
 	const {
 		register,
+		control,
 		handleSubmit,
+		watch,
 		formState: { errors, isSubmitted },
 	} = useForm<Inputs>();
-  
+
 	const cookies = useCookies();
 	function callFunctionByCategory(data: any, category: string) {
 		switch (category) {
@@ -150,13 +153,12 @@ const FormularAplica = ({
 							"text-xs peer-focus:text-xs peer-focus:after:!border-rosu-brand peer-focus:!text-rosu-brand  peer-focus:!text-rosu-brand  peer-focus:before:!border-rosu-brand",
 					}}
 				/>
-
+				<SelectDateBirth label={nastereLabel} register={register} watch={watch} control={control} />
 				<Input
 					variant="outlined"
 					type="date"
 					{...register("dataNastere", { required: true })}
 					id="dataNastere"
-					label={nastereLabel}
 					className="w-full ring-0 focus:border-rosu-brand focus:!border-t-transparent "
 					labelProps={{
 						className:

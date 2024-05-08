@@ -1,5 +1,5 @@
-import { NextResponse, userAgent } from "next/server";
-import type { NextFetchEvent, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
@@ -33,22 +33,19 @@ export function middleware(request: NextRequest) {
 
 		return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url));
 	}
-	  const url = request.nextUrl;
-		const res = NextResponse.next();
-		const { browser } = userAgent(request);
-		const browserName = browser.name === browser.name ? browser.name : "undefined";
 
-		request.nextUrl.searchParams.set("browser", browserName as string);
-		// add the CORS headers to the response
-		res.headers.append("Access-Control-Allow-Credentials", "true");
-		res.headers.append("Access-Control-Allow-Origin", "https://backend.humansource.ro/api/graphql"); // replace this your actual origin
-		res.headers.append("Access-Control-Allow-Methods", "GET,DELETE,PATCH,POST,PUT");
-		res.headers.append(
-			"Access-Control-Allow-Headers",
-			"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-		);
+	const res = NextResponse.next();
 
-		return NextResponse.rewrite(url);
+	// add the CORS headers to the response
+	res.headers.append("Access-Control-Allow-Credentials", "true");
+	res.headers.append("Access-Control-Allow-Origin", "https://backend.humansource.ro/api/graphql"); // replace this your actual origin
+	res.headers.append("Access-Control-Allow-Methods", "GET,DELETE,PATCH,POST,PUT");
+	res.headers.append(
+		"Access-Control-Allow-Headers",
+		"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+	);
+
+	return NextResponse.next();
 }
 
 export const config = {
