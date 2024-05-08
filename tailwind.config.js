@@ -9,6 +9,17 @@ module.exports = withMT({
 
 	theme: {
 		extend: {
+		
+				animation: {
+					scroll: "scroll 40s linear infinite",
+				},
+				keyframes: {
+					scroll: {
+						from: { transform: "translateX(0)" },
+						to: { transform: "translateX(calc(-250px * 8))" },
+					},
+				},
+			
 			fontFamily: {
 				sans: ["var(--font-madera)", ...fontFamily.sans],
 			},

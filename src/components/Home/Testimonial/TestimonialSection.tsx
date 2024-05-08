@@ -1,6 +1,6 @@
 "use client";
 import { Avatar, Card, CardBody, CardHeader, Typography } from "@material-tailwind/react";
-
+import { motion } from "framer-motion";
 function Star() {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
@@ -45,6 +45,20 @@ export function TestimonialSection() {
 			img: "https://images.unsplash.com/photo-1611042553365-9b101441c135?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80",
 		},
 		{
+			rating: 5,
+			feedback: "The time is now for it to be okay to be great. People in this world shun people for being great.",
+			client: "Renee Wells",
+			title: "Product Designer, Quotient",
+			img: "https://images.unsplash.com/photo-1611042553365-9b101441c135?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80",
+		},
+		{
+			rating: 5,
+			feedback: "The time is now for it to be okay to be great. People in this world shun people for being great.",
+			client: "Renee Wells",
+			title: "Product Designer, Quotient",
+			img: "https://images.unsplash.com/photo-1611042553365-9b101441c135?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80",
+		},
+		{
 			rating: 4,
 			feedback: "For being a bright color. For standing out. But the time is now to be okay to be the greatest you.",
 			client: "Candice Wu",
@@ -58,16 +72,50 @@ export function TestimonialSection() {
 			title: "CEO & Founder, Quotient",
 			img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dGVhbSUyMG1lbWJlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
 		},
+		{
+			rating: 3,
+			feedback: "Would you believe in what you believe in, if you were the only one who believed it?",
+			client: "Olivia Rhye",
+			title: "CEO & Founder, Quotient",
+			img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dGVhbSUyMG1lbWJlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+		},
+		{
+			rating: 3,
+			feedback: "Would you believe in what you believe in, if you were the only one who believed it?",
+			client: "Olivia Rhye",
+			title: "CEO & Founder, Quotient",
+			img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dGVhbSUyMG1lbWJlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+		},
+		{
+			rating: 3,
+			feedback: "Would you believe in what you believe in, if you were the only one who believed it?",
+			client: "Olivia Rhye",
+			title: "CEO & Founder, Quotient",
+			img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dGVhbSUyMG1lbWJlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+		},
 	];
-
+	const slideWidth = 250 / testimonials.length;
+	const duplicatedTestimonials = [...testimonials, ...testimonials];
 	return (
-		<section className="px-8 py-8 lg:py-20">
-			<div className="container mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-				{testimonials.map((props, key) => (
-					<TestimonialCard key={key} {...props} />
+		<div className="relative w-full overflow-hidden ">
+			<motion.div
+				className="flex px-8 py-8 lg:py-20 "
+				animate={{
+					x: ["-200%", "0%"],
+					transition: {
+						ease: "linear",
+						duration: 44,
+						repeat: Infinity,
+					},
+				}}
+			>
+				{duplicatedTestimonials.map((props, key) => (
+					<div key={props.client} className="flex-shrink-0" style={{ width: `${slideWidth}%` }}>
+						<TestimonialCard key={key} {...props} />
+					</div>
 				))}
-			</div>
-		</section>
+			</motion.div>
+		</div>
 	);
 }
 
