@@ -52,7 +52,7 @@ const CardJob = ({
 
 const ClientJobPage: FC<IpageProps> = ({ params }) => {
 	const searchParams = useSearchParams();
-	const idJob = searchParams.get("id");
+	const idJob = searchParams.get("id") as string;
 	const category = searchParams.get("category") as string;
 
 	const { data }: IJob = useSuspenseQuery(query, {
@@ -184,9 +184,8 @@ const ClientJobPage: FC<IpageProps> = ({ params }) => {
 							{t("indemn")}
 						</Typography>
 					</div>
-					<div className="flex rounded-2xl bg-alb-site p-5 md:w-1/2 md:p-10">
-						<FormularAplica title={title} category={category} params={params} id={id} />
-					</div>
+
+					<FormularAplica title={title} category={category} params={params} id={id} />
 				</div>
 			</div>
 		</div>

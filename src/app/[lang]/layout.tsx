@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { cookies } from "next/headers";
 import CookieConsent from "@/components/cookies/CookiesConsent";
+
 export const viewport: Viewport = {
 	width: "device-width",
 	initialScale: 1,
