@@ -51,18 +51,18 @@ export default function Home({ params }: { params: { lang: string; country: stri
 					<IntrebariSection params={params} />
 				</div>
 				<div
-					className="mx-1 flex flex-col items-center justify-center  bg-gri-bg pb-10 md:mx-2 md:px-16  md:pb-[0px] "
-					id="background"
-				>
-					<TestimonialSection />
-				</div>
-				<div
 					className="mx-1 flex flex-col items-center justify-center  rounded-b-[10px]  bg-white pb-12  md:mx-2 md:px-16 "
 					id="background"
 				>
 					<Suspense fallback={<Spinner />}>
 						<BlogSection params={params} />
 					</Suspense>
+				</div>
+				<div
+					className="mx-1 flex flex-col items-center justify-center  bg-gri-bg pb-10 md:mx-2 md:px-16  md:pb-[0px] "
+					id="background"
+				>
+					<TestimonialSection />
 				</div>
 			</div>
 		</div>

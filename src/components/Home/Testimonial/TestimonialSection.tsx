@@ -1,6 +1,7 @@
 "use client";
 import { Avatar, Card, CardBody, CardHeader, Typography } from "@material-tailwind/react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 function Star() {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
@@ -11,23 +12,26 @@ function Star() {
 
 function TestimonialCard({ img, rating, feedback, client, title }) {
 	return (
-		<Card color="transparent" shadow={false} className="p-8">
-			<CardHeader color="transparent" floated={false} shadow={false} className="!m-0 !mb-8">
-				<Avatar src={img} alt={client} size="xxl" className="h-48 w-48" />
-			</CardHeader>
-			<CardBody className="!p-0">
-				<div className="mb-2 flex items-center">
-					{[...Array(rating).keys()].map((el, key) => (
-						<Star key={key} />
-					))}
+		<Card color="transparent" shadow={false} className=" flex h-full p-8">
+			<CardBody className="flex h-full flex-col justify-between !p-0">
+				<div>
+					<div className="mb-2 flex  items-start ">
+						{[...Array(rating).keys()].map((el, key) => (
+							<Star key={key} />
+						))}
+					</div>
+					<Typography variant="paragraph" className="mb-2 text-sm font-bold text-gri-brand md:text-base">
+						" {feedback} "
+					</Typography>
 				</div>
-				<Typography variant="paragraph" className="mb-6 font-bold text-gri-brand">
-					{feedback}
-				</Typography>
-				<Typography variant="lead" className="font-medium text-gri-brand">
-					&#8212; {client}
-				</Typography>
-				<Typography className="font-normal text-gri-brand">{title}</Typography>
+				<div className="">
+					<Typography variant="lead" className="text-base font-medium text-gri-brand md:text-xl">
+						&#8212; {client}
+					</Typography>
+					<Typography variant="paragraph" className="text-sm font-normal text-gri-brand  md:text-base">
+						{title}
+					</Typography>
+				</div>
 			</CardBody>
 		</Card>
 	);
@@ -86,27 +90,31 @@ export function TestimonialSection() {
 	];
 
 	const duplicatedTestimonials = [...testimonials, ...testimonials];
-
+	const [isHovered, setHovered] = useState(false);
+	console.log(isHovered);
 	return (
-		<div className="relative w-full overflow-hidden ">
-			<motion.div
-				className="flex px-8 py-8 lg:py-20 "
-				animate={{
-					x: ["-200%", "0%"],
-					transition: {
-						ease: "linear",
-						duration: 44,
-						repeat: Infinity,
-					},
-				}}
-			>
-				{duplicatedTestimonials.map((props, key) => (
-					<div key={props.client} className="w-full flex-shrink-0 md:w-1/2 lg:w-1/3">
-						<TestimonialCard key={key} {...props} />
-					</div>
-				))}
-			</motion.div>
-		</div>
+		<section className="container flex w-full flex-col items-center  px-6  md:gap-8 md:px-0 lg:mx-0  ">
+			<div className="relative w-full overflow-hidden ">
+				<motion.div
+					className="flex px-8 py-8 lg:py-20 "
+					animate={{
+						x: ["-200%", "0%"],
+						transition: {
+							ease: "linear",
+							duration: 140,
+							repeat: Infinity,
+						},
+					}}
+					whileHover={{ transition: { duration: 0 } }}
+				>
+					{duplicatedTestimonials.map((props, key) => (
+						<div key={key} className="w-full flex-shrink-0 md:w-1/4 lg:w-1/3">
+							<TestimonialCard {...props} />
+						</div>
+					))}
+				</motion.div>
+			</div>
+		</section>
 	);
 }
 
