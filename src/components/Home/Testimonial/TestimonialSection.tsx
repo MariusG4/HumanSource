@@ -21,15 +21,13 @@ function TestimonialCard({ img, rating, feedback, client, title }) {
 						<Star key={key} />
 					))}
 				</div>
-				<Typography variant="h4" color="blue-gray" className="mb-6 font-bold">
+				<Typography variant="paragraph" className="mb-6 font-bold text-gri-brand">
 					{feedback}
 				</Typography>
-				<Typography variant="lead" color="blue-gray" className="font-medium">
+				<Typography variant="lead" className="font-medium text-gri-brand">
 					&#8212; {client}
 				</Typography>
-				<Typography color="gray" className="font-normal">
-					{title}
-				</Typography>
+				<Typography className="font-normal text-gri-brand">{title}</Typography>
 			</CardBody>
 		</Card>
 	);
@@ -39,63 +37,56 @@ export function TestimonialSection() {
 	const testimonials = [
 		{
 			rating: 5,
-			feedback: "The time is now for it to be okay to be great. People in this world shun people for being great.",
-			client: "Renee Wells",
-			title: "Product Designer, Quotient",
+			feedback:
+				"În calitate de client al companiei Human Source timp de 4 ani, pot spune că serviciile și atenția la detalii care ne-au fost oferite sunt exemplare. Sfaturile pe care le primim sunt temeinice, actualizate și livrate cu cel mai înalt profesionalism. Experiența este rentabilă, iar spiritul de echipă al companiei ne-a permis să creștem și să folosim multitudinea de resurse umane oferite, toate cu asigurarea că suntem pe mâini bune.",
+			client: "Alex",
+			title: "Manager la Tech Solutions SRL",
 			img: "https://images.unsplash.com/photo-1611042553365-9b101441c135?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80",
 		},
 		{
 			rating: 5,
-			feedback: "The time is now for it to be okay to be great. People in this world shun people for being great.",
-			client: "Renee Wells",
-			title: "Product Designer, Quotient",
+			feedback:
+				"Echipa Human Resource este un partener de încredere pentru FitPro Gym de mulți ani. Ne-au ajutat să ne documentăm procesele de resurse umane și să eficientizăm procesul de recrutare pentru a se potrivi cu creșterea continuă a companiei noastre. Considerăm echipa Human Source ca o extensie a companiei noastre și suntem siguri că relația noastră va fi una pe termen lung.",
+			client: "Diana",
+			title: "Director General la FitPro Gym",
 			img: "https://images.unsplash.com/photo-1611042553365-9b101441c135?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80",
 		},
 		{
 			rating: 5,
-			feedback: "The time is now for it to be okay to be great. People in this world shun people for being great.",
-			client: "Renee Wells",
-			title: "Product Designer, Quotient",
+			feedback:
+				"Parteneriatul cu Human Source a fost benefic agenției noastre, oferind un mediu de lucru confortabil, sigur și sănătos pentru angajații noștri. Au depășit mereu cerințele noastre fiind întotdeauna disponibili cu o echipă pregătită, informată și care are în vedere toate interesele companiei noastre.",
+			client: "Radu",
+			title: "Manager HR la Media Solutions Group",
 			img: "https://images.unsplash.com/photo-1611042553365-9b101441c135?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80",
 		},
 		{
 			rating: 4,
-			feedback: "For being a bright color. For standing out. But the time is now to be okay to be the greatest you.",
-			client: "Candice Wu",
-			title: "Engineering Manager, Amazon",
+			feedback:
+				"Colaborarea noastră cu Human Source ne-a permis să lucrăm la afacerea noastră fără grija procesului de recrutare. Putem spune că au pus în mișcare toate procesele de care am avut nevoie pentru a ne crește afacerea într-un timp record.",
+			client: "Laura",
+			title: "Antreprenor la NextGen Software Solutions",
 			img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
 		},
 		{
-			rating: 3,
-			feedback: "Would you believe in what you believe in, if you were the only one who believed it?",
-			client: "Olivia Rhye",
-			title: "CEO & Founder, Quotient",
+			rating: 4,
+			feedback:
+				"Am avut plăcerea de a lucra exclusiv cu Human Source în ultimii 3 ani. Consider că Human Source dă dovadă de integritate crescută în această industrie. Procesul de recrutare este transparent și complet. Human Source ne-a ajutat întotdeauna să găsim potrivirea perfectă, fie din punct de vedere tehnic, fie din punct de vedere comportamental, astfel ajutându-ne să ne întregim echipa.",
+			client: "Andrei",
+			title: "CEO la Digital Dynamics Agency",
 			img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dGVhbSUyMG1lbWJlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
 		},
 		{
-			rating: 3,
-			feedback: "Would you believe in what you believe in, if you were the only one who believed it?",
-			client: "Olivia Rhye",
-			title: "CEO & Founder, Quotient",
-			img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dGVhbSUyMG1lbWJlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-		},
-		{
-			rating: 3,
-			feedback: "Would you believe in what you believe in, if you were the only one who believed it?",
-			client: "Olivia Rhye",
-			title: "CEO & Founder, Quotient",
-			img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dGVhbSUyMG1lbWJlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-		},
-		{
-			rating: 3,
-			feedback: "Would you believe in what you believe in, if you were the only one who believed it?",
-			client: "Olivia Rhye",
-			title: "CEO & Founder, Quotient",
+			rating: 5,
+			feedback:
+				"Experiența noastră de lucru cu Human Source a fost foarte pozitivă. Profesionalismul lor a fost neîntrerupt. Echipa excelează în selecția, identificarea și integrarea candidaților. Vă mulțumim că ați făcut din procesul de recrutare o experiență atât de plăcută.",
+			client: "Ioana",
+			title: "Manager HR la Bright Future Technologies",
 			img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dGVhbSUyMG1lbWJlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
 		},
 	];
-	const slideWidth = 250 / testimonials.length;
+
 	const duplicatedTestimonials = [...testimonials, ...testimonials];
+
 	return (
 		<div className="relative w-full overflow-hidden ">
 			<motion.div
@@ -110,7 +101,7 @@ export function TestimonialSection() {
 				}}
 			>
 				{duplicatedTestimonials.map((props, key) => (
-					<div key={props.client} className="flex-shrink-0" style={{ width: `${slideWidth}%` }}>
+					<div key={props.client} className="w-full flex-shrink-0 md:w-1/2 lg:w-1/3">
 						<TestimonialCard key={key} {...props} />
 					</div>
 				))}
