@@ -23,6 +23,7 @@ import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 import { useTranslation } from "@/app/i18n/client";
 import CheckIfDefaulthLang from "@/utils/isDefaultLang";
+import Pas10Transport from "@/components/Formular/sofer/pasi/10";
 
 export type TransportSearchParamsType = {
 	absolvire: string;
@@ -35,6 +36,7 @@ export type TransportSearchParamsType = {
 	locatia: string;
 	subDomeniu: string;
 	ultimuSalar: string;
+	nrTelefon: string;
 };
 type Inputs = {
 	tipRemorca: string;
@@ -47,6 +49,7 @@ type Inputs = {
 	ultimulSalariu: string;
 	salariuDorit: string;
 	category: string;
+	nrTelefon: string;
 };
 
 const FormularSofer = ({ params }: { params: { lang: string; country: string } }) => {
@@ -68,6 +71,7 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 			lbItaliana: cookies.get("sofer-italiana") || "",
 			ultimulSalariu: cookies.get("sofer-ultimul-salariu") || "",
 			salariuDorit: cookies.get("sofer-salariu-dorit") || "",
+			nrTelefon: cookies.get("sofer-numar-telefon") || "",
 			category: "transport",
 		},
 	});
@@ -84,6 +88,7 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 			<Pas7Trasport setValue={setValue} setDisabled={setDisabled} />,
 			<Pas8Trasport register={register} setDisabled={setDisabled} />,
 			<Pas9Trasport register={register} setDisabled={setDisabled} />,
+			<Pas10Transport register={register} params={params} setValue={setValue} setDisabled={setDisabled} />,
 		],
 		setDisabled,
 	);
@@ -104,20 +109,8 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 		salariuDorit,
 		ultimulSalariu,
 		category,
+		nrTelefon,
 	}) => {
-		console.log("asta trebuie sa apara");
-		console.log(
-			tipRemorca,
-			vechime,
-			regim,
-			tahograf,
-			echipaj,
-			turaNoapte,
-			lbItaliana,
-			salariuDorit,
-			ultimulSalariu,
-			category,
-		);
 		try {
 			addTransportForm({
 				variables: {
@@ -132,6 +125,7 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 						tahograf: tahograf,
 						turaNoapte: turaNoapte,
 						ultimuSalar: ultimulSalariu,
+						nrTelefon: nrTelefon,
 					},
 				},
 			});
@@ -147,6 +141,7 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 			cookies.remove("sofer-italiana");
 			cookies.remove("sofer-ultimul-salariu");
 			cookies.remove("sofer-salariu-dorit");
+			cookies.remove("sofer-numar-telefon");
 		} catch (error) {
 			console.log(error);
 			console.log(

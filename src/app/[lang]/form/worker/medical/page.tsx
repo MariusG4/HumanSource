@@ -23,6 +23,7 @@ import NavigatieFormularMedic from "@/components/Formular/medic/NavigatieFormula
 import { useCookies } from "next-client-cookies";
 import { useTranslation } from "@/app/i18n/client";
 import CheckIfDefaulthLang from "@/utils/isDefaultLang";
+import Pas10Medical from "@/components/Formular/medic/pasi/10";
 export type MedicalSearchParamsType = {
 	absolvire: string;
 	amg: string;
@@ -34,6 +35,7 @@ export type MedicalSearchParamsType = {
 	locatia: string;
 	subDomeniu: string;
 	ultimuSalar: string;
+	nrTelefon: string;
 };
 type Inputs = {
 	experienta: string;
@@ -45,6 +47,7 @@ type Inputs = {
 	ultimulSalariu: string;
 	locatia: string;
 	curs: string;
+	nrTelefon: string;
 };
 
 const FormularMedic = ({ params }: { params: { lang: string; country: string } }) => {
@@ -61,6 +64,7 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 		locatia: "",
 		subDomeniu: "",
 		ultimuSalar: "",
+		nrTelefon: "",
 	});
 
 	const {
@@ -80,6 +84,7 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 			ultimulSalariu: cookies.get("medic-ultimu-salariu") || "",
 			locatia: cookies.get("medic-locatia") || "",
 			curs: cookies.get("medic-cursItaliana") || "",
+			nrTelefon: cookies.get("medic-numar-telefon") || "",
 		},
 	});
 	const { steps, currentStepIndex, isFirstStep, isLastStep, step, back, next } = useMultistepForm(
@@ -99,6 +104,13 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 			<Pas7Medical setSearchParams={setSearchParams} setValue={setValue} setDisabled={setDisabled} />,
 			<Pas8Medical setSearchParams={setSearchParams} register={register} setDisabled={setDisabled} />,
 			<Pas9Medical setSearchParams={setSearchParams} setValue={setValue} setDisabled={setDisabled} />,
+			<Pas10Medical
+				setSearchParams={setSearchParams}
+				register={register}
+				params={params}
+				setValue={setValue}
+				setDisabled={setDisabled}
+			/>,
 		],
 		setDisabled,
 	);
@@ -118,6 +130,7 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 		locatia,
 		domeniu,
 		ultimulSalariu,
+		nrTelefon,
 	}) => {
 		try {
 			addMedicalForm({
@@ -133,6 +146,7 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 						locatia: locatia,
 						subDomeniu: domeniu,
 						ultimuSalar: ultimulSalariu,
+						nrTelefon: nrTelefon,
 					},
 				},
 			});
@@ -147,6 +161,7 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 			cookies.remove("medic-ultimu-salariu");
 			cookies.remove("medic-locatia");
 			cookies.remove("medic-cursItaliana");
+			cookies.remove("medic-numar-telefon");
 		} catch (error) {
 			console.log(error);
 		}
