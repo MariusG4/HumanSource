@@ -70,11 +70,10 @@ const FormularAplica = ({
 	const medicalId = cookies.get("medicalFormId") as string;
 	const transportId = cookies.get("transportFormId") as string;
 	function TransportFormAdd(data: Inputs) {
-		console.log("date", date);
 		addJobApplication({
 			variables: {
 				data: {
-					birthDate: date,
+					birthDate: data.dataNastere,
 					email: data.email,
 					name: data.nume,
 					transport: { connect: { id: transportId } },
@@ -92,11 +91,10 @@ const FormularAplica = ({
 		isSubmitted && router.push(`/${params.lang}/multumim?title=${title}`);
 	}
 	function MedicalFormAdd(data: Inputs) {
-		console.log("date", date);
 		addJobApplication({
 			variables: {
 				data: {
-					birthDate: date,
+					birthDate: data.dataNastere,
 					email: data.email,
 					name: data.nume,
 					medical: { connect: { id: medicalId } },
@@ -114,11 +112,10 @@ const FormularAplica = ({
 		isSubmitted && router.push(`/${params.lang}/multumim?title=${title}`);
 	}
 	function DefaultAdd(data: Inputs) {
-		console.log("date", date);
 		addJobApplication({
 			variables: {
 				data: {
-					birthDate: date,
+					birthDate: data.dataNastere,
 					email: data.email,
 					name: data.nume,
 
@@ -151,9 +148,11 @@ const FormularAplica = ({
 	let mesajLabel = t("form.mesaj");
 	const today = new Date();
 	const [date, setDate] = useState<Date>();
-	const dateReceived = watch("dataNastere");
+
 	const newDate = date ? date.toString() : today.toString();
-	const formattedDate = formatDate(newDate, params);
+	const formattedDate = format(new Date(newDate), "yyyy-MM-dd");
+
+
 
 	return (
 		<div className="relative flex rounded-2xl bg-alb-site p-5 md:w-1/2 md:p-10">
