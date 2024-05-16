@@ -1,42 +1,8 @@
 "use client";
-import { Avatar, Card, CardBody, CardHeader, Carousel, Typography } from "@material-tailwind/react";
+import { Avatar, Card, CardBody, CardHeader, Carousel, Typography, IconButton } from "@material-tailwind/react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-function Star() {
-	return (
-		<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
-			<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-		</svg>
-	);
-}
-
-function TestimonialCard({ img, rating, feedback, client, title }) {
-	return (
-		<Card color="transparent" shadow={false} className=" flex h-full p-8">
-			<CardBody className="flex h-full flex-col justify-between !p-0">
-				<div>
-					<div className="mb-2 flex  items-start ">
-						{[...Array(rating).keys()].map((el, key) => (
-							<Star key={key} />
-						))}
-					</div>
-					<Typography variant="paragraph" className="mb-2 text-sm font-bold text-gri-brand md:text-base">
-						" {feedback} "
-					</Typography>
-				</div>
-				<div className="">
-					<Typography variant="lead" className="text-base font-medium text-gri-brand md:text-xl">
-						&#8212; {client}
-					</Typography>
-					<Typography variant="paragraph" className="text-sm font-normal text-gri-brand  md:text-base">
-						{title}
-					</Typography>
-				</div>
-			</CardBody>
-		</Card>
-	);
-}
-
+import TestimonialCard from "./testimonialCard";
 export function TestimonialSection() {
 	const testimonials = [
 		{
@@ -89,58 +55,25 @@ export function TestimonialSection() {
 		},
 	];
 
-	const duplicatedTestimonials = [...testimonials, ...testimonials];
 	const [isHovered, setHovered] = useState(false);
-	console.log(isHovered);
+
 	return (
-		<section className="container flex w-full flex-col items-center  px-6  md:gap-8 md:px-0 lg:mx-0  ">
+		<section className="container flex w-full flex-col items-center justify-center  px-6 py-24  md:gap-8 md:px-0 lg:mx-0  ">
 			<Carousel
-				className="rounded-xl"
-				navigation={({ setActiveIndex, activeIndex, length }) => (
-					<div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
-						{new Array(length).fill("").map((_, i) => (
-							<span
-								key={i}
-								className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-									activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
-								}`}
-								onClick={() => setActiveIndex(i)}
-							/>
-						))}
-					</div>
-				)}
+				autoplayDelay={8000}
+				autoplay={true}
+				loop={true}
+				transition={{ type: "spring", duration: 1 }}
+				className="rounded-xl "
+				navigation={() => <div></div>}
 			>
-				<img
-					src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-					alt="image 1"
-					className="h-full w-full object-cover"
-				/>
-				<img
-					src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
-					alt="image 2"
-					className="h-full w-full object-cover"
-				/>
-				<img
-					src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
-					alt="image 3"
-					className="h-full w-full object-cover"
-				/>
+				{testimonials.map((props, key) => (
+					<div className="flex w-full justify-center">
+						{" "}
+						<TestimonialCard {...props} />
+					</div>
+				))}
 			</Carousel>
-			<div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2"></div>
-			<div className="relative w-full overflow-hidden ">
-				<motion.div
-					className="flex px-8 py-8 lg:py-20 "
-					animate={{
-						x: ["-200%", "0%"],
-						transition: {
-							ease: "linear",
-							duration: 40,
-							repeat: Infinity,
-						},
-					}}
-					whileHover={{ transition: { duration: 0 } }}
-				></motion.div>
-			</div>
 		</section>
 	);
 }

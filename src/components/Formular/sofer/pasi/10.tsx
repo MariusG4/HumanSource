@@ -10,11 +10,7 @@ const Pas10Transport = ({ register, setDisabled, params }: any) => {
 	const cookies = useCookies();
 	const { t } = useTranslation(params.lang, "job");
 	let telefonLabel = t("form.telefon");
-	useEffect(() => {
-		if (cookies.get("transport-numar-telefon") !== undefined) {
-			setDisabled(false);
-		}
-	}, []);
+
 	return (
 		<FormWrapper intrebare="Spunetine numartul de telefon">
 			<div className="flex w-full items-center justify-center gap-1 justify-self-start md:w-[300px]">
@@ -25,7 +21,7 @@ const Pas10Transport = ({ register, setDisabled, params }: any) => {
 					id="nrTelefon"
 					icon={<FiPhone />}
 					label={telefonLabel}
-					onChange={setDisabled(false)}
+					onChange={() => setDisabled(false)}
 					className="w-full ring-0 focus:border-rosu-brand focus:!border-t-transparent "
 					labelProps={{
 						className:

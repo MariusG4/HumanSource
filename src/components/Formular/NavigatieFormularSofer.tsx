@@ -24,6 +24,7 @@ const NavigatieFormularSofer = ({
 	next,
 	disabled,
 }: IButtonProps) => {
+	console.log("lastStep", isLastStep);
 	return (
 		<div className="relative flex w-full items-center justify-between px-2 py-12  md:px-16">
 			{!isFirstStep && (
