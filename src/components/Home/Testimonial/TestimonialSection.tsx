@@ -56,26 +56,26 @@ export function TestimonialSection() {
 	];
 
 	const [isHovered, setHovered] = useState(false);
-
-	return (
-		<section className="container flex w-full flex-col items-center justify-center  px-6 py-24  md:gap-8 md:px-0 lg:mx-0  ">
-			<Carousel
-				autoplayDelay={8000}
-				autoplay={true}
-				loop={true}
-				transition={{ type: "spring", duration: 1 }}
-				className="rounded-xl "
-				navigation={() => <div></div>}
-			>
-				{testimonials.map((props, key) => (
-					<div className="flex w-full justify-center">
-						{" "}
-						<TestimonialCard {...props} />
-					</div>
-				))}
-			</Carousel>
-		</section>
-	);
+const [stopped, setStoppedCarouselState] = useState(false);
+return (
+	<section className="container flex w-full flex-col items-center justify-center  px-6 py-24  md:gap-8 md:px-0 lg:mx-0  ">
+		<Carousel
+			autoplayDelay={3000}
+			autoplay={stopped ? false : true}
+			loop={true}
+			transition={{ type: "spring", duration: 1 }}
+			className="rounded-xl "
+			navigation={() => <div></div>}
+		>
+			{testimonials.map((props, key) => (
+				<div key={key} className="flex w-full justify-center">
+					{" "}
+					<TestimonialCard setStoppedCarouselState={setStoppedCarouselState} {...props} />
+				</div>
+			))}
+		</Carousel>
+	</section>
+);
 }
 
 export default TestimonialSection;

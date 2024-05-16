@@ -10,7 +10,7 @@ import Pas6Medical from "@/components/Formular/medic/pasi/6";
 import Pas7Medical from "@/components/Formular/medic/pasi/7";
 import Pas8Medical from "@/components/Formular/medic/pasi/8";
 import Pas9Medical from "@/components/Formular/medic/pasi/9";
-
+import Pas10Medical from "@/components/Formular/medic/pasi/10";
 import { useMultistepForm } from "@/components/Formular/useMultistepForm";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import Link from "next/link";
@@ -23,7 +23,7 @@ import NavigatieFormularMedic from "@/components/Formular/medic/NavigatieFormula
 import { useCookies } from "next-client-cookies";
 import { useTranslation } from "@/app/i18n/client";
 import CheckIfDefaulthLang from "@/utils/isDefaultLang";
-import Pas10Medical from "@/components/Formular/medic/pasi/10";
+
 export type MedicalSearchParamsType = {
 	absolvire: string;
 	amg: string;

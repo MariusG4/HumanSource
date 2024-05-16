@@ -25,7 +25,11 @@ const Pas10Medical = ({ register, setDisabled, params }: any) => {
 					id="nrTelefon"
 					icon={<FiPhone />}
 					label={telefonLabel}
-					onChange={setDisabled(false)}
+					onChange={(e) => {
+						const value = e.target.value;
+						cookies.set("medic-numar-telefon", value, { secure: true, sameSite: "none" });
+						setDisabled(false);
+					}}
 					className="w-full ring-0 focus:border-rosu-brand focus:!border-t-transparent "
 					labelProps={{
 						className:

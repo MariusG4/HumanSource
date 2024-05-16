@@ -1,7 +1,7 @@
 "use client";
 
 import { useMultistepForm } from "@/components/Formular/useMultistepForm";
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import Pas1Trasport from "@/components/Formular/sofer/pasi/1";
 import Pas2Trasport from "@/components/Formular/sofer/pasi/2";
 import Pas3Trasport from "@/components/Formular/sofer/pasi/3";
@@ -11,6 +11,7 @@ import Pas6Trasport from "@/components/Formular/sofer/pasi/6";
 import Pas7Trasport from "@/components/Formular/sofer/pasi/7";
 import Pas8Trasport from "@/components/Formular/sofer/pasi/8";
 import Pas9Trasport from "@/components/Formular/sofer/pasi/9";
+import Pas10Transport from "@/components/Formular/sofer/pasi/10";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
@@ -23,7 +24,6 @@ import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 import { useTranslation } from "@/app/i18n/client";
 import CheckIfDefaulthLang from "@/utils/isDefaultLang";
-import Pas10Transport from "@/components/Formular/sofer/pasi/10";
 
 export type TransportSearchParamsType = {
 	absolvire: string;
@@ -92,6 +92,7 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 		],
 		setDisabled,
 	);
+
 	const router = useRouter();
 	const [addTransportForm] = useMutation(AddTransportForm, {
 		onCompleted(data) {
@@ -160,43 +161,43 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 	};
 
 	const { t } = useTranslation(params.lang, "formularMuncitor");
-		  const checkKeyDown = (e) => {
-				if (e.key === "Enter") e.preventDefault();
-			};
-			return (
-				<div className="container mx-auto flex flex-col px-5 pb-9 lg:px-0">
-					<Breadcrumbs>
-						<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/")}>
-							{/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment 
+	const checkKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
+		if (e.key === "Enter") e.preventDefault();
+	};
+	return (
+		<div className="container mx-auto flex flex-col px-5 pb-9 lg:px-0">
+			<Breadcrumbs>
+				<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/")}>
+					{/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment 
               	// @ts-ignore */}
-							{t("breadHome")}
-						</Link>
-						<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/form/worker")}>
-							{t("breadFormular")}
-						</Link>
-						<Link className="text-rosu-brand" href={CheckIfDefaulthLang(params, "/form/worker")}>
-							{t("breadTransport")}
-						</Link>
-					</Breadcrumbs>
-					<form
-						onKeyDown={(e) => checkKeyDown(e)}
-						className="relative  rounded-2xl bg-alb-site px-5 pt-8 "
-						onSubmit={handleSubmit(onSubmit)}
-					>
-						{step}
+					{t("breadHome")}
+				</Link>
+				<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/form/worker")}>
+					{t("breadFormular")}
+				</Link>
+				<Link className="text-rosu-brand" href={CheckIfDefaulthLang(params, "/form/worker")}>
+					{t("breadTransport")}
+				</Link>
+			</Breadcrumbs>
+			<form
+				onKeyDown={(e) => checkKeyDown(e)}
+				className="relative  rounded-2xl bg-alb-site px-5 pt-8 "
+				onSubmit={handleSubmit(onSubmit)}
+			>
+				{step}
 
-						<NavigatieFormularSofer
-							disabled={disabled}
-							back={back}
-							next={next}
-							isFirstStep={isFirstStep}
-							isLastStep={isLastStep}
-							currentStepIndex={currentStepIndex}
-							steps={steps}
-						/>
-					</form>
-				</div>
-			);
+				<NavigatieFormularSofer
+					disabled={disabled}
+					back={back}
+					next={next}
+					isFirstStep={isFirstStep}
+					isLastStep={isLastStep}
+					currentStepIndex={currentStepIndex}
+					steps={steps}
+				/>
+			</form>
+		</div>
+	);
 };
 
 export default FormularSofer;
