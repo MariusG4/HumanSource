@@ -167,35 +167,42 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 		}
 	};
 	const { t } = useTranslation(params.lang, "formularMuncitor");
-	return (
-		<div className="container mx-auto flex flex-col px-5 pb-9 lg:px-0">
-			<Breadcrumbs>
-				<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/")}>
-					{/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment 
+	  const checkKeyDown = (e) => {
+			if (e.key === "Enter") e.preventDefault();
+		};
+		return (
+			<div className="container mx-auto flex flex-col px-5 pb-9 lg:px-0">
+				<Breadcrumbs>
+					<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/")}>
+						{/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment 
               	// @ts-ignore */}
-					{t("breadHome")}
-				</Link>
-				<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/form/worker")}>
-					{t("breadFormular")}
-				</Link>
-				<Link className="text-red-600" href={CheckIfDefaulthLang(params, "/form/worker")}>
-					{t("breadMedical")}
-				</Link>
-			</Breadcrumbs>
-			<form onSubmit={handleSubmit(onSubmit)} className="relative  rounded-2xl bg-alb-site px-5 pt-8 ">
-				{step}
-				<NavigatieFormularMedic
-					disabled={disabled}
-					back={back}
-					next={next}
-					isFirstStep={isFirstStep}
-					isLastStep={isLastStep}
-					currentStepIndex={currentStepIndex}
-					steps={steps}
-				/>
-			</form>
-		</div>
-	);
+						{t("breadHome")}
+					</Link>
+					<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/form/worker")}>
+						{t("breadFormular")}
+					</Link>
+					<Link className="text-red-600" href={CheckIfDefaulthLang(params, "/form/worker")}>
+						{t("breadMedical")}
+					</Link>
+				</Breadcrumbs>
+				<form
+					onKeyDown={(e) => checkKeyDown(e)}
+					onSubmit={handleSubmit(onSubmit)}
+					className="relative  rounded-2xl bg-alb-site px-5 pt-8 "
+				>
+					{step}
+					<NavigatieFormularMedic
+						disabled={disabled}
+						back={back}
+						next={next}
+						isFirstStep={isFirstStep}
+						isLastStep={isLastStep}
+						currentStepIndex={currentStepIndex}
+						steps={steps}
+					/>
+				</form>
+			</div>
+		);
 };
 
 export default FormularMedic;

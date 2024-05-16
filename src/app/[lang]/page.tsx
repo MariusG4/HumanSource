@@ -59,7 +59,7 @@ export default function Home({ params }: { params: { lang: string; country: stri
 					</Suspense>
 				</div>
 				<div
-					className="mx-1 flex flex-col items-center justify-center  bg-gri-bg pb-10 md:mx-2 md:px-16  md:pb-[0px] "
+					className="mx-1 flex flex-col items-center justify-center  bg-alb-site pb-10 md:mx-2 md:px-16  md:pb-[0px] "
 					id="background"
 				>
 					<TestimonialSection />
