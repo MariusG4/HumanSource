@@ -1,12 +1,13 @@
 import { MdPersonOutline } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import { FiPhone } from "react-icons/fi";
-import { Checkbox, Input, Textarea } from "@material-tailwind/react";
+import { Alert, Checkbox, Input, Textarea } from "@material-tailwind/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import addContactForm from "@/lib/apollo/mutations/mutateContactForm";
 import { useMutation } from "@apollo/client";
 import { useCookies } from "next-client-cookies";
 import { useTranslation } from "@/app/i18n/client";
+import { useState } from "react";
 
 type Inputs = {
 	nume: string;
@@ -15,8 +16,20 @@ type Inputs = {
 	mesaj: string;
 	privacy: boolean;
 };
+function Icon() {
+	return (
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+			<path
+				fillRule="evenodd"
+				d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+				clipRule="evenodd"
+			/>
+		</svg>
+	);
+}
 
 const ContactForm = ({ params }: { params: { lang: string; country: string } }) => {
+	const [open, setOpen] = useState(false);
 	const [addContact] = useMutation(addContactForm);
 	const cookies = useCookies();
 	const {
@@ -42,6 +55,7 @@ const ContactForm = ({ params }: { params: { lang: string; country: string } }) 
 			cookies.remove("contact-email");
 			cookies.remove("contact-phone");
 			cookies.remove("contact-message");
+			setOpen(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -52,7 +66,7 @@ const ContactForm = ({ params }: { params: { lang: string; country: string } }) 
 	let telefonLabel = t("formular.telefon");
 	let mesajLabel = t("formular.mesaj");
 	return (
-		<div className="flex justify-end rounded-2xl bg-alb-site p-5">
+		<div className="relative flex justify-end rounded-2xl bg-alb-site p-5">
 			<form className="relative w-full justify-between bg-alb-site" onSubmit={handleSubmit(onSubmit)}>
 				<div className="mb-4 grid grid-cols-1 gap-6 md:grid-cols-2">
 					<div>
@@ -167,6 +181,15 @@ const ContactForm = ({ params }: { params: { lang: string; country: string } }) 
 					</button>
 				</div>
 			</form>
+			{open && (
+				<Alert
+					icon={<Icon />}
+					className="absolute left-1/2 z-50 rounded-none border-l-4 border-[#2ec946] bg-[#2ec946] font-medium text-alb-site opacity-0"
+					onClose={() => setOpen(false)}
+				>
+					Felicitari ! Te vom contacta in cel mai scurt timp
+				</Alert>
+			)}
 		</div>
 	);
 };
