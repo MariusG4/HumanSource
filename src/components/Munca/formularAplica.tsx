@@ -204,15 +204,25 @@ const FormularAplica = ({
 									onSelect={setDate}
 									onDayClick={() => setOpenedDatePicker(false)}
 									showOutsideDays
+									captionLayout="dropdown-buttons"
+									fromYear={1930}
+									toYear={2024}
 									className="border-0 bg-alb-site px-6 py-4 "
 									classNames={{
+										caption_dropdowns: " flex w-full justify-center flex-col-reverse items-center",
+
+										dropdown_month:
+											"bg-gray-600/10 flex relative hover:scale-110 w-full justify-center py-2 cursor-pointer",
+										dropdown_year:
+											"bg-gray-600/10 flex relative hover:scale-110 w-full justify-center py-2 cursor-pointer",
 										caption: "flex justify-center py-2 mb-4 relative items-center",
 										caption_label: "text-sm font-medium text-gray-900",
+										dropdown_icon: "hidden",
 										nav: "flex items-center",
 										nav_button:
 											"h-6 w-6 bg-transparent hover:bg-blue-gray-50 p-1 rounded-md transition-colors duration-300",
-										nav_button_previous: "absolute left-1.5",
-										nav_button_next: "absolute right-1.5",
+										nav_button_previous: "hidden",
+										nav_button_next: "hidden",
 										table: "w-full border-collapse",
 										head_row: "flex font-medium text-gray-900",
 										head_cell: "m-0.5 w-9 font-normal text-sm",
@@ -227,10 +237,6 @@ const FormularAplica = ({
 											"day-outside text-gray-500 opacity-50 aria-selected:bg-gray-500 aria-selected:text-gray-900 aria-selected:bg-opacity-10",
 										day_disabled: "text-gray-500 opacity-50",
 										day_hidden: "invisible",
-									}}
-									components={{
-										IconLeft: ({ ...props }) => <ChevronLeftIcon {...props} className="h-4 w-4 stroke-2" />,
-										IconRight: ({ ...props }) => <ChevronRightIcon {...props} className="h-4 w-4 stroke-2" />,
 									}}
 								/>
 							</div>
