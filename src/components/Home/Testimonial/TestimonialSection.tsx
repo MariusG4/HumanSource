@@ -1,8 +1,9 @@
 "use client";
 import { Avatar, Card, CardBody, CardHeader, Carousel, Typography, IconButton } from "@material-tailwind/react";
-import { motion } from "framer-motion";
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { useState } from "react";
 import TestimonialCard from "./testimonialCard";
+import Link from "next/link";
 export function TestimonialSection() {
 	const testimonials = [
 		{
@@ -55,27 +56,38 @@ export function TestimonialSection() {
 		},
 	];
 
-	const [isHovered, setHovered] = useState(false);
-const [stopped, setStoppedCarouselState] = useState(false);
-return (
-	<section className="container flex w-full flex-col items-center justify-center  px-6 py-24  md:gap-8 md:px-0 lg:mx-0  ">
-		<Carousel
-			autoplayDelay={3000}
-			autoplay={stopped ? false : true}
-			loop={true}
-			transition={{ type: "spring", duration: 1 }}
-			className="rounded-xl "
-			navigation={() => <div></div>}
-		>
-			{testimonials.map((props, key) => (
-				<div key={key} className="flex w-full justify-center">
-					{" "}
-					<TestimonialCard setStoppedCarouselState={setStoppedCarouselState} {...props} />
-				</div>
-			))}
-		</Carousel>
-	</section>
-);
+	const [stopped, setStoppedCarouselState] = useState(false);
+	return (
+		<section className="container flex w-full flex-col items-center justify-center  px-6 py-24  md:gap-8 md:px-0 lg:mx-0  ">
+			<Carousel
+				autoplayDelay={3000}
+				autoplay={stopped ? false : true}
+				loop={true}
+				transition={{ type: "spring", duration: 1 }}
+				className="rounded-xl "
+				navigation={() => <div></div>}
+			>
+				{testimonials.map((props, key) => (
+					<div key={key} className="flex w-full justify-center">
+						{" "}
+						<TestimonialCard setStoppedCarouselState={setStoppedCarouselState} {...props} />
+					</div>
+				))}
+			</Carousel>
+			<Link
+				id="link-to-google"
+				target="_blank"
+				rel="noopener noreferrer"
+				href="https://www.google.com/search?client=safari&hl=en-RO&sca_esv=9fc72e91ef5044ae&sca_upv=1&cs=1&output=search&tbm=lcl&q=HumanSource&ludocid=5238309380753476241&lsig=AB86z5Vp_S_E1-ptPzCZgxrdcGQk&kgs=e6d8b73a115533ce&shndl=30&shem=lsp&source=sh/x/kp/local/m1/1#lkt=LocalPoiReviews&rlfi=hd:;si:5238309380753476241,l,CgtIdW1hblNvdXJjZZIBGmh1bWFuX3Jlc3NvdXJjZV9jb25zdWx0aW5n;mv:[[44.39949099297619,26.122713961060334],[44.39789462521473,26.118690647538]]"
+				className="group flex items-center justify-center gap-2 rounded-lg border px-4 py-1 duration-300 hover:bg-gri-brand"
+			>
+				<span className="flex duration-300 group-hover:text-alb-site"> Vezi review pe Google </span>
+				<span className="  duration-500 group-hover:translate-x-2">
+					<MdOutlineKeyboardDoubleArrowRight className="group-hover:text-alb-site" />
+				</span>
+			</Link>
+		</section>
+	);
 }
 
 export default TestimonialSection;
