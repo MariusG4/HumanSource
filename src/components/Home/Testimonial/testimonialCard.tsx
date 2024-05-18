@@ -32,7 +32,7 @@ function TestimonialCard({ img, rating, feedback, client, title, setStoppedCarou
 			onMouseLeave={() => {
 				setStoppedCarouselState(false);
 			}}
-			className="group  flex h-full max-w-3xl bg-gri-deschis-bg bg-opacity-25 p-8 "
+			className="group flex   max-w-3xl bg-gri-deschis-bg bg-opacity-25 p-8  "
 		>
 			<CardBody className="flex h-full flex-col justify-between gap-4 !p-0 text-center">
 				<div className="flex flex-col gap-4">
@@ -45,7 +45,7 @@ function TestimonialCard({ img, rating, feedback, client, title, setStoppedCarou
 						" {feedback} "
 					</Typography>
 				</div>
-				<div className="flex flex-col gap-2">
+				<div className="flex  flex-col gap-2">
 					<Typography variant="lead" className="text-base font-medium text-gri-brand md:text-xl">
 						&#8212; {client}
 					</Typography>

@@ -58,17 +58,31 @@ export function TestimonialSection() {
 
 	const [stopped, setStoppedCarouselState] = useState(false);
 	return (
-		<section className="container flex w-full flex-col items-center justify-center  px-6 py-24  md:gap-8 md:px-0 lg:mx-0  ">
+		<section className="container flex h-fit w-full flex-col items-center justify-center  px-6 py-24  md:gap-8 md:px-0 lg:mx-0  ">
 			<Carousel
 				autoplayDelay={3000}
 				autoplay={stopped ? false : true}
 				loop={true}
 				transition={{ type: "spring", duration: 1 }}
-				className="rounded-xl "
-				navigation={() => <div></div>}
+				className=" rounded-xl py-6"
+				prevArrow={() => <div></div>}
+				nextArrow={() => <div></div>}
+				navigation={({ setActiveIndex, activeIndex, length }) => (
+					<div className="absolute -bottom-0 left-2/4 z-50 flex -translate-x-2/4 gap-2 ">
+						{new Array(length).fill("").map((_, i) => (
+							<span
+								key={i}
+								className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
+									activeIndex === i ? "w-8 bg-gri-brand" : "w-4 bg-gri-brand/50"
+								}`}
+								onClick={() => setActiveIndex(i)}
+							/>
+						))}
+					</div>
+				)}
 			>
 				{testimonials.map((props, key) => (
-					<div key={key} className="flex w-full justify-center">
+					<div key={key} id="card-testimonial" className="relative flex h-full w-full justify-center ">
 						{" "}
 						<TestimonialCard setStoppedCarouselState={setStoppedCarouselState} {...props} />
 					</div>
@@ -79,7 +93,7 @@ export function TestimonialSection() {
 				target="_blank"
 				rel="noopener noreferrer"
 				href="https://www.google.com/search?client=safari&hl=en-RO&sca_esv=9fc72e91ef5044ae&sca_upv=1&cs=1&output=search&tbm=lcl&q=HumanSource&ludocid=5238309380753476241&lsig=AB86z5Vp_S_E1-ptPzCZgxrdcGQk&kgs=e6d8b73a115533ce&shndl=30&shem=lsp&source=sh/x/kp/local/m1/1#lkt=LocalPoiReviews&rlfi=hd:;si:5238309380753476241,l,CgtIdW1hblNvdXJjZZIBGmh1bWFuX3Jlc3NvdXJjZV9jb25zdWx0aW5n;mv:[[44.39949099297619,26.122713961060334],[44.39789462521473,26.118690647538]]"
-				className="group flex items-center justify-center gap-2 rounded-lg border px-4 py-1 duration-300 hover:bg-gri-brand"
+				className="group my-5 flex items-center justify-center gap-2 rounded-lg border px-4 py-1 duration-300 hover:bg-gri-brand"
 			>
 				<span className="flex duration-300 group-hover:text-alb-site"> Vezi review pe Google </span>
 				<span className="  duration-500 group-hover:translate-x-2">

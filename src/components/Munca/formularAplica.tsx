@@ -11,12 +11,12 @@ import { FiPhone } from "react-icons/fi";
 import { MdPersonOutline } from "react-icons/md";
 
 import { format } from "date-fns";
-import { Button, DayPicker } from "react-day-picker";
+import { Button, DayContentProps, DayPicker, useDayPicker } from "react-day-picker";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import useOnclickOutside from "react-cool-onclickoutside";
 import "../../lib/react-day-picker/styles.css";
-import formatDate from "@/utils/formatDate";
+import { ro } from "date-fns/locale";
 type Inputs = {
 	nume: string;
 	dataNastere: string;
@@ -152,8 +152,6 @@ const FormularAplica = ({
 	const newDate = date ? date.toString() : today.toString();
 	const formattedDate = format(new Date(newDate), "yyyy-MM-dd");
 
-
-
 	return (
 		<div className="relative flex rounded-2xl bg-alb-site p-5 md:w-1/2 md:p-10">
 			{openedDatePicker && <div className="absolute z-40 flex h-full w-full backdrop-blur-sm" id="mask" />}
@@ -201,6 +199,7 @@ const FormularAplica = ({
 								<DayPicker
 									mode="single"
 									selected={date}
+									locale={ro}
 									onSelect={setDate}
 									onDayClick={() => setOpenedDatePicker(false)}
 									showOutsideDays
