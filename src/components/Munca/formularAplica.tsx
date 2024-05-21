@@ -194,7 +194,7 @@ const FormularAplica = ({
 								data-popover
 								id="popover-default"
 								role="tooltip"
-								className="absolute z-50 flex h-full w-full items-center justify-center gap-4"
+								className="absolute  z-50 flex h-full w-full items-center justify-center gap-4"
 							>
 								<DayPicker
 									mode="single"
@@ -208,13 +208,13 @@ const FormularAplica = ({
 									toYear={2024}
 									className="border-0 bg-alb-site px-6 py-4 "
 									classNames={{
-										caption_dropdowns: " flex w-full justify-center flex-col-reverse items-center",
+										caption_dropdowns: " flex w-full justify-center flex-col-reverse items-center gap-1",
 
 										dropdown_month:
-											"bg-gray-600/10 flex relative hover:scale-110 w-full justify-center py-2 cursor-pointer",
+											"bg-gri-deschis-bg/10 flex relative hover:scale-110 w-full justify-center py-2 cursor-pointer",
 										dropdown_year:
-											"bg-gray-600/10 flex relative hover:scale-110 w-full justify-center py-2 cursor-pointer",
-										caption: "flex justify-center py-2 mb-4 relative items-center",
+											"bg-gri-deschis-bg/10 flex relative hover:scale-110 w-full justify-center py-2 cursor-pointer",
+										caption: "flex justify-center py-2 mb-4 relative items-center overflow-hidden p-1 ",
 										caption_label: "text-sm font-medium text-gray-900",
 										dropdown_icon: "hidden",
 										nav: "flex items-center",
@@ -231,7 +231,7 @@ const FormularAplica = ({
 										day_range_end: "day-range-end",
 										day_selected:
 											"rounded-md bg-gray-900 text-white hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white",
-										day_today: "rounded-md bg-gray-200 text-gray-900",
+
 										day_outside:
 											"day-outside text-gray-500 opacity-50 aria-selected:bg-gray-500 aria-selected:text-gray-900 aria-selected:bg-opacity-10",
 										day_disabled: "text-gray-500 opacity-50",
