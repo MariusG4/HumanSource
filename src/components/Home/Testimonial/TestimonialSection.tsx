@@ -82,8 +82,7 @@ export function TestimonialSection() {
 				)}
 			>
 				{testimonials.map((props, key) => (
-					<div key={key} id="card-testimonial" className="relative flex h-full w-full justify-center ">
-						{" "}
+					<div key={key} id="card-testimonial" className=" relative flex h-full w-full justify-center p-1 ">
 						<TestimonialCard setStoppedCarouselState={setStoppedCarouselState} {...props} />
 					</div>
 				))}
