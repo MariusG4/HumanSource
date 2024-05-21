@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-import { Typography } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 
@@ -95,8 +95,8 @@ const CardBlog = ({ data, titlu, slug, imageUrl, id, params, content }: ICardBlo
 								? ` ${paragraph.substring(0, 90)}  ${paragraphLength >= 90 ? "..." : ""}`
 								: `${paragraph.substring(0, 160)} ${paragraphLength >= 160 ? "..." : ""} `}
 						</Typography>
-						<button
-							className={`z-50 mb-4 h-[10%] overflow-visible bg-transparent py-2 text-start text-sm text-gri-bg shadow-none hover:scale-95 hover:shadow-none md:mb-8 md:mt-4 md:py-5 md:text-base ${
+						<Button
+							className={`z-50  flex h-fit w-fit overflow-visible   bg-transparent pl-0 text-sm font-light normal-case text-gri-bg shadow-none hover:scale-95 hover:shadow-none md:text-base ${
 								hovered && "text-alb-site"
 							}`}
 							onClick={() => {
@@ -105,7 +105,7 @@ const CardBlog = ({ data, titlu, slug, imageUrl, id, params, content }: ICardBlo
 						>
 							<span className={`${hovered && "text-alb-site"}`}>{t("blog.buton")}</span>
 							{hovered && <ArrowForwardIcon className="ml-2 text-alb-site" />}
-						</button>
+						</Button>
 					</div>
 				</motion.div>
 			</AnimatePresence>
