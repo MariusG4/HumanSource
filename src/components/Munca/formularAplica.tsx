@@ -211,12 +211,13 @@ const FormularAplica = ({
 										caption_dropdowns: " flex w-full justify-center flex-col-reverse items-center gap-1",
 
 										dropdown_month:
-											"bg-gri-deschis-bg/10 flex relative hover:scale-110 w-full justify-center py-2 cursor-pointer",
+											"bg-gri-deschis-bg/10 flex relative  hover:scale-110 w-full justify-center py-2 cursor-pointer",
+
 										dropdown_year:
 											"bg-gri-deschis-bg/10 flex relative hover:scale-110 w-full justify-center py-2 cursor-pointer",
 										caption: "flex justify-center py-2 mb-4 relative items-center overflow-hidden p-1 ",
-										caption_label: "text-sm font-medium text-gray-900",
-										dropdown_icon: "hidden",
+										caption_label: "text-sm flex w-full px-5 justify-between items-center  font-medium text-gray-900",
+										dropdown_icon: "",
 										nav: "flex items-center",
 										nav_button:
 											"h-6 w-6 bg-transparent hover:bg-blue-gray-50 p-1 rounded-md transition-colors duration-300",
