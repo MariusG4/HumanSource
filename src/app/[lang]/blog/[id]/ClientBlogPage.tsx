@@ -22,7 +22,7 @@ const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) =>
 	}
   const jsonLd = {
 		"@context": "https://schema.org",
-		"@type": "Blog",
+		"@type": "Article",
 		name: data.blog.title,
 		image: data.blog.photo.image.publicUrlTransformed,
 		description: data.blog.content,
