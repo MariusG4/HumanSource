@@ -104,13 +104,7 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 			<Pas7Medical setSearchParams={setSearchParams} setValue={setValue} setDisabled={setDisabled} />,
 			<Pas8Medical setSearchParams={setSearchParams} register={register} setDisabled={setDisabled} />,
 			<Pas9Medical setSearchParams={setSearchParams} setValue={setValue} setDisabled={setDisabled} />,
-			<Pas10Medical
-				setSearchParams={setSearchParams}
-				register={register}
-				params={params}
-				setValue={setValue}
-				setDisabled={setDisabled}
-			/>,
+			<Pas10Medical register={register} setValue={setValue} setDisabled={setDisabled} />,
 		],
 		setDisabled,
 	);
@@ -146,7 +140,7 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 						locatia: locatia,
 						subDomeniu: domeniu,
 						ultimuSalar: ultimulSalariu,
-						nrTelefon: nrTelefon,
+						phone: nrTelefon,
 					},
 				},
 			});

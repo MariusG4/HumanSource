@@ -1,22 +1,20 @@
 import { Input } from "@material-tailwind/react";
 import FormWrapper from "../../FormWrapper";
-import { MedicalSearchParamsType } from "@/app/[lang]/form/worker/medical/page";
+
 import { useCookies } from "next-client-cookies";
 import { useEffect } from "react";
 import { FiPhone } from "react-icons/fi";
-import { useTranslation } from "@/app/i18n/client";
 
-const Pas10Medical = ({ register, setDisabled, params }: any) => {
+const Pas10Medical = ({ register, setDisabled }: any) => {
 	const cookies = useCookies();
-	const { t } = useTranslation(params.lang, "job");
-	let telefonLabel = t("form.telefon");
+
 	useEffect(() => {
 		if (cookies.get("medic-numar-telefon") !== undefined) {
 			setDisabled(false);
 		}
 	}, []);
 	return (
-		<FormWrapper intrebare="Spunetine numartul de telefon">
+		<FormWrapper intrebare="Spuneti-ne numarul dumneavoastra de telefon">
 			<div className="flex w-full items-center justify-center gap-1 justify-self-start md:w-[300px]">
 				<Input
 					variant="outlined"
@@ -24,7 +22,7 @@ const Pas10Medical = ({ register, setDisabled, params }: any) => {
 					{...register("nrTelefon", { required: true })}
 					id="nrTelefon"
 					icon={<FiPhone />}
-					label={telefonLabel}
+					label="Numar de telefon"
 					onChange={(e) => {
 						const value = e.target.value;
 						cookies.set("medic-numar-telefon", value, { secure: true, sameSite: "none" });

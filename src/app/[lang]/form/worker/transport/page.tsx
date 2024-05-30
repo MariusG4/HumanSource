@@ -88,7 +88,7 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 			<Pas7Trasport setValue={setValue} setDisabled={setDisabled} />,
 			<Pas8Trasport register={register} setDisabled={setDisabled} />,
 			<Pas9Trasport register={register} setDisabled={setDisabled} />,
-			<Pas10Transport register={register} params={params} setValue={setValue} setDisabled={setDisabled} />,
+			<Pas10Transport register={register} setValue={setValue} setDisabled={setDisabled} />,
 		],
 		setDisabled,
 	);
@@ -126,7 +126,7 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 						tahograf: tahograf,
 						turaNoapte: turaNoapte,
 						ultimuSalar: ultimulSalariu,
-						nrTelefon: nrTelefon,
+						phone: nrTelefon,
 					},
 				},
 			});
@@ -142,7 +142,6 @@ const FormularSofer = ({ params }: { params: { lang: string; country: string } }
 			cookies.remove("sofer-italiana");
 			cookies.remove("sofer-ultimul-salariu");
 			cookies.remove("sofer-salariu-dorit");
-			cookies.remove("sofer-numar-telefon");
 		} catch (error) {
 			console.log(error);
 			console.log(
