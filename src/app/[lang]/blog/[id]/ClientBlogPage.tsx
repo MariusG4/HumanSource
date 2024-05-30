@@ -10,6 +10,7 @@ import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { IBlog } from "@/interfaces/blog";
 import { usePathname } from "next/navigation";
 import { WhatsappIcon,EmailIcon,FacebookIcon,FacebookShareButton,EmailShareButton,WhatsappShareButton} from "react-share";
+import JsonLd from "@/utils/JsonLd";
 
 const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) => {
 	const { data }: IBlog = useSuspenseQuery(query, {
@@ -20,14 +21,7 @@ const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) =>
 	if (!data) {
 		return <span>Loading...</span>;
 	}
-  const jsonLd = {
-		"@context": "https://schema.org",
-		"@type": "Article",
-		title: data.blog.title,
-		name: data.blog.title,
-		image: data.blog.photo.image.publicUrlTransformed,
-		description: data.blog.content,
-	};
+
 	const blog = data.blog;
 	let { photo, title, id, dateCreated, content, tags, author } = blog;
 
@@ -41,7 +35,16 @@ const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) =>
 	const fullUrl = `${process.env.NEXT_PUBLIC_SITE_URL}${pathname}`;
 	return (
 		<section className="flex w-full flex-col ">
-			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+			<JsonLd
+				data={{
+					"@context": "https://schema.org",
+					"@type": "Article",
+					title: data.blog.title,
+					name: data.blog.title,
+					image: data.blog.photo.image.publicUrlTransformed,
+					description: data.blog.content,
+				}}
+			/>
 			{!data ? (
 				<span>loading...</span>
 			) : (
@@ -74,7 +77,6 @@ const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) =>
 					</div>
 				</div>
 			)}
-
 			<div className="mx-auto flex w-fit flex-col gap-12 text-center">
 				<span className="text-[7vw] font-extrabold md:text-[2vw]">Contacteaza-ne !</span>
 				<ContactWays />

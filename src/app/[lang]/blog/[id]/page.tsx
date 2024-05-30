@@ -1,5 +1,5 @@
+import JsonLd from "@/utils/JsonLd";
 import ClientBlogPage from "./ClientBlogPage";
-
 
 const BlogPage = ({ params }: { params: { lang: string; id: string } }) => {
 	const slug = params.id;
