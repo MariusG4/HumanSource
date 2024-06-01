@@ -135,7 +135,6 @@ const FormularAplica = ({
 	const onSubmit: SubmitHandler<Inputs> = (data) => {
 		try {
 			callFunctionByCategory(data, category);
-			console.log(data);
 		} catch (error) {
 			console.log(error);
 		}

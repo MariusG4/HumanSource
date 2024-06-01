@@ -47,7 +47,7 @@ function PaginatedItems({
 					document: DocumentProp;
 				};
 				dateCreated: string;
-
+				category: { name: string; id: string };
 				title: string;
 				photo: {
 					altText: string;

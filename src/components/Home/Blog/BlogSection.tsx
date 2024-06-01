@@ -1,13 +1,13 @@
 "use client";
 import dynamic from "next/dynamic";
-import { Iparams } from "@/interfaces/params";
+
 
 import { useTranslation } from "@/app/i18n/client";
 import { Suspense } from "react";
 import Spinner from "@/components/Spinner/Spinner";
 const CaruselBloguri = dynamic(() => import("./CaruselBloguri"));
 
-const BlogSection = ({ params }: Iparams) => {
+const BlogSection = ({ params }: { params: { lang: string } }) => {
 	const { t } = useTranslation(params.lang, "home");
 	return (
 		<section className="container  px-[14px] text-center md:px-0">

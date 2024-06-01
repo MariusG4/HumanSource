@@ -12,7 +12,7 @@ interface ICardBlogSecundar {
 
 	date: string;
 	slug: string;
-	categories: { name: string }[];
+	categories: { name: string; id: string }[];
 	photo: {
 		altText: string;
 		id: string;
@@ -27,6 +27,7 @@ interface ICardBlogSecundar {
 }
 
 const CardBlogSecundar = ({ id, date, title, photo, categories, params, slug }: ICardBlogSecundar) => {
+
 	let altText = !photo ? "nu are alt" : photo.altText;
 	let imageUrl = !photo
 		? "https://res.cloudinary.com/dmm7tnk7s/image/upload/v1698689593/87Af-eFtsR_JPiASGbYk9RpEly4.jpg"

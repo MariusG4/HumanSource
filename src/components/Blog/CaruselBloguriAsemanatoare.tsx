@@ -3,13 +3,12 @@
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import CardBlog from "./CardBlog";
+
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-import query from "@/lib/apollo/queries/blog/getTopBlogs";
+import query from "@/lib/apollo/queries/blog/getBlogsSameCategory";
 
-import { Iparams } from "@/interfaces/params";
 import { IlastBlogs } from "@/interfaces/blog";
-
+import CardBlog from "../Home/Blog/CardBlog";
 
 const responsive = {
 	superLargeDesktop: {
@@ -43,12 +42,20 @@ const CustomButtonGroupAsArrows = ({ next, previous }: { next: () => void; previ
 		</>
 	);
 };
-const CaruselBloguri = ({ params }: { params: { lang: string } }) => {
+const CaruselBloguriAsemanatoare = ({
+	params,
+	categoriesId,
+}: {
+	params: { lang: string; id: string };
+	categoriesId: string;
+}) => {
 	const capitalizedParams = params.lang.toLocaleUpperCase();
+
 	const { data }: IlastBlogs = useSuspenseQuery(query, {
 		variables: {
-			where: {
+			blogsWhere2: {
 				language: { languages: { contains: capitalizedParams } },
+				categories: { some: { id: { equals: categoriesId } } },
 			},
 			orderBy: [{ dateCreated: "desc" }],
 		},
@@ -113,4 +120,4 @@ const CaruselBloguri = ({ params }: { params: { lang: string } }) => {
 	);
 };
 
-export default CaruselBloguri;
+export default CaruselBloguriAsemanatoare;

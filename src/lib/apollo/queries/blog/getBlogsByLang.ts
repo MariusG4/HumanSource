@@ -15,6 +15,7 @@ const query = gql`
 			}
 			categories {
 				name
+				id
 			}
 
 			content {

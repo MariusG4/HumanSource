@@ -12,6 +12,8 @@ import { usePathname } from "next/navigation";
 import { WhatsappIcon,EmailIcon,FacebookIcon,FacebookShareButton,EmailShareButton,WhatsappShareButton} from "react-share";
 import JsonLd from "@/utils/JsonLd";
 
+import CaruselBloguriAsemanatoare from "@/components/Blog/CaruselBloguriAsemanatoare";
+
 const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) => {
 	const { data }: IBlog = useSuspenseQuery(query, {
 		variables: {
@@ -23,6 +25,7 @@ const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) =>
 	}
 
 	const blog = data.blog;
+
 	let { photo, title, id, dateCreated, content, tags, author } = blog;
 
 	const formattedDate = formatDate(dateCreated, params);
@@ -81,6 +84,7 @@ const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) =>
 				<span className="text-[7vw] font-extrabold md:text-[2vw]">Contacteaza-ne !</span>
 				<ContactWays />
 			</div>
+			<CaruselBloguriAsemanatoare categoriesId="99b41e9e-2d9f-4f10-aa89-9a0476df244d" params={params} />
 		</section>
 	);
 };
