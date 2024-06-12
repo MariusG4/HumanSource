@@ -117,7 +117,7 @@ export interface IBlog {
 			slug: string;
 			dateCreated: string;
 			title: string;
-			categories: { id: string };
+			categories: [{ id: string; name: string }];
 			content: {
 				document: DocumentProp;
 			};

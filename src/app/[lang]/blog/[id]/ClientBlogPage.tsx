@@ -26,7 +26,7 @@ const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) =>
 
 	const blog = data.blog;
 
-	let { photo, title, id, dateCreated, content, tags, author } = blog;
+	let { photo, title, id, dateCreated, content, tags, author, categories } = blog;
 
 	const formattedDate = formatDate(dateCreated, params);
 
@@ -36,6 +36,7 @@ const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) =>
 		: photo.image.publicUrlTransformed;
 	const pathname = usePathname();
 	const fullUrl = `${process.env.NEXT_PUBLIC_SITE_URL}${pathname}`;
+
 	return (
 		<section className="flex w-full flex-col ">
 			<JsonLd
@@ -84,7 +85,14 @@ const ClientBlogPage = ({ params }: { params: { lang: string; id: string } }) =>
 				<span className="text-[7vw] font-extrabold md:text-[2vw]">Contacteaza-ne !</span>
 				<ContactWays />
 			</div>
-			<CaruselBloguriAsemanatoare categoriesId="99b41e9e-2d9f-4f10-aa89-9a0476df244d" params={params} />
+			<div
+				className="mx-1 flex flex-col items-center justify-center   pb-10 md:mx-2 md:px-16  md:pb-[0px] "
+				id="background"
+			>
+				<div className="container  px-[14px] text-center md:px-0">
+					<CaruselBloguriAsemanatoare categoriesId={categories[0].id} params={params} />{" "}
+				</div>
+			</div>
 		</section>
 	);
 };

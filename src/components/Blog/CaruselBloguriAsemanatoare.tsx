@@ -62,7 +62,7 @@ const CaruselBloguriAsemanatoare = ({
 	});
 
 	const blogs = data.blogs;
-
+console.log("categoriesId", categoriesId);
 	return (
 		<div className="relative flex w-full md:px-6">
 			<Carousel
