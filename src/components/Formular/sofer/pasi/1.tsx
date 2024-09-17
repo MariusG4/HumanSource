@@ -1,5 +1,5 @@
 import FormWrapper from "../../FormWrapper";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import CardRemorca from "../CardRemorca";
 import Cisterna from "../../../../../public/imagini/formular/sofer/negru/cisterna.svg";
 import CisternaAlb from "../../../../../public/imagini/formular/sofer/alb/cisterna.svg";
@@ -38,7 +38,10 @@ const Pas1Trasport = ({ setValue, setDisabled }: any) => {
 	const handleClick = ({ cardSelectat, valoareFormular }: IClickProps) => {
 		setValue("tipRemorca", valoareFormular);
 		setSelected(cardSelectat);
-		cookies.set("sofer-tip-remorca", cardSelectat.toString());
+		cookies.set("sofer-tip-remorca", cardSelectat.toString(), {
+			secure: true,
+			sameSite: "none",
+		});
 
 		setDisabled(false);
 	};

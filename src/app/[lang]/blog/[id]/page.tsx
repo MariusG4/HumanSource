@@ -1,12 +1,5 @@
+import JsonLd from "@/utils/JsonLd";
 import ClientBlogPage from "./ClientBlogPage";
-
-export async function generateMetadata({ params }: { params: { lang: string; id: string } }) {
-	const decodedString = decodeURIComponent(params.id);
-
-	return {
-		title: decodedString,
-	};
-}
 
 const BlogPage = ({ params }: { params: { lang: string; id: string } }) => {
 	const slug = params.id;

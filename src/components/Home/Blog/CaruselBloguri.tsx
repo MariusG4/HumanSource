@@ -9,7 +9,7 @@ import query from "@/lib/apollo/queries/blog/getTopBlogs";
 
 import { Iparams } from "@/interfaces/params";
 import { IlastBlogs } from "@/interfaces/blog";
-import dateBlog from "./dateBlog";
+
 
 const responsive = {
 	superLargeDesktop: {
@@ -17,11 +17,11 @@ const responsive = {
 		items: 3,
 	},
 	desktop: {
-		breakpoint: { max: 3000, min: 1024 },
+		breakpoint: { max: 3000, min: 1224 },
 		items: 3,
 	},
 	tablet: {
-		breakpoint: { max: 1024, min: 464 },
+		breakpoint: { max: 1224, min: 464 },
 		items: 2,
 	},
 	mobile: {
@@ -43,7 +43,7 @@ const CustomButtonGroupAsArrows = ({ next, previous }: { next: () => void; previ
 		</>
 	);
 };
-const CaruselBloguri = ({ params }: Iparams) => {
+const CaruselBloguri = ({ params }: { params: { lang: string } }) => {
 	const capitalizedParams = params.lang.toLocaleUpperCase();
 	const { data }: IlastBlogs = useSuspenseQuery(query, {
 		variables: {
@@ -55,7 +55,6 @@ const CaruselBloguri = ({ params }: Iparams) => {
 	});
 
 	const blogs = data.blogs;
-
 
 	return (
 		<div className="relative flex w-full md:px-6">
@@ -94,10 +93,6 @@ const CaruselBloguri = ({ params }: Iparams) => {
 				{blogs
 					.filter(({}, index) => index <= 5)
 					.map(({ id, dateCreated, title, content, slug, photo }, index) => {
-					
-				
-						
-
 						let imageUrl = photo?.image?.publicUrlTransformed;
 
 						return (

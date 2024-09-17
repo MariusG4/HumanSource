@@ -8,7 +8,7 @@ const AvantajeSection = dynamic(() => import("@/components/Home/Avantaje/Avantaj
 const BlogSection = dynamic(() => import("@/components/Home/Blog/BlogSection"));
 const IntrebariSection = dynamic(() => import("@/components/Home/Intrebari/IntrebariSection"));
 const NevoiSection = dynamic(() => import("@/components/Home/Nevoi/NevoiSection"));
-const ParteneriSection = dynamic(() => import("@/components/Home/Parteneri/ParteneriSection"));
+const TestimonialSection = dynamic(() => import("@/components/Home/Testimonial/TestimonialSection"));
 const ServiciiSection = dynamic(() => import("@/components/Home/Servicii/ServiciiSection"));
 import type { Metadata } from "next";
 
@@ -21,7 +21,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home({ params }: { params: { lang: string; country: string } }) {
-
 	return (
 		<div className="mb-[-10rem] grid grid-cols-1 items-center justify-center " id="container-home">
 			<HeroSection params={params} />
@@ -58,8 +57,12 @@ export default function Home({ params }: { params: { lang: string; country: stri
 					<Suspense fallback={<Spinner />}>
 						<BlogSection params={params} />
 					</Suspense>
-
-					<ParteneriSection />
+				</div>
+				<div
+					className="mx-1 flex flex-col items-center justify-center  bg-white pb-10 md:mx-2 md:px-16  md:pb-[0px] "
+					id="background"
+				>
+					<TestimonialSection />
 				</div>
 			</div>
 		</div>

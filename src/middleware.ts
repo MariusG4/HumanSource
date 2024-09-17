@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-import { i18n } from "../i18n.config";
-
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { i18n } from "i18n.config";
 
 function getLocale(request: NextRequest): string | undefined {
 	const negotiatorHeaders: Record<string, string> = {};
@@ -34,6 +33,7 @@ export function middleware(request: NextRequest) {
 
 		return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url));
 	}
+
 	const res = NextResponse.next();
 
 	// add the CORS headers to the response
@@ -45,7 +45,7 @@ export function middleware(request: NextRequest) {
 		"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
 	);
 
-	return res;
+	return NextResponse.next();
 }
 
 export const config = {

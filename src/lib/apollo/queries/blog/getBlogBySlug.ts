@@ -6,6 +6,10 @@ const query = gql`
 			slug
 			dateCreated
 			title
+			categories {
+				id
+				name
+			}
 			author {
 				name
 			}
