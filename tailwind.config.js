@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 const { fontFamily } = require("tailwindcss/defaultTheme");
 const withMT = require("@material-tailwind/react/utils/withMT");
 
@@ -9,6 +10,17 @@ module.exports = withMT({
 
 	theme: {
 		extend: {
+		
+				animation: {
+					scroll: "scroll 40s linear infinite",
+				},
+				keyframes: {
+					scroll: {
+						from: { transform: "translateX(0)" },
+						to: { transform: "translateX(calc(-250px * 8))" },
+					},
+				},
+			
 			fontFamily: {
 				sans: ["var(--font-madera)", ...fontFamily.sans],
 			},
@@ -34,6 +46,7 @@ module.exports = withMT({
 		},
 	},
 	plugins: [
+		require("@tailwindcss/line-clamp"),
 		require("@tailwindcss/forms"),
 		function ({ addVariant }) {
 			addVariant("child", "& > *");

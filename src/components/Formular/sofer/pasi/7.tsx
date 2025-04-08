@@ -28,7 +28,7 @@ const Pas7Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("lbItaliana", "deloc");
 						setSelected(1);
-						cookies.set("sofer-italiana", "1");
+						cookies.set("sofer-italiana", "1", { secure: true, sameSite: "none" });
 						setDisabled(false);
 					}}
 					type="button"
@@ -43,7 +43,7 @@ const Pas7Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("lbItaliana", "mediu");
 						setSelected(2);
-						cookies.set("sofer-italiana", "2");
+						cookies.set("sofer-italiana", "2", { secure: true, sameSite: "none" });
 						setDisabled(false);
 					}}
 					type="button"
@@ -57,7 +57,7 @@ const Pas7Trasport = ({ setValue, setDisabled }: any) => {
 					onClick={() => {
 						setValue("lbItaliana", "avansat");
 						setSelected(3);
-						cookies.set("sofer-italiana", "3");
+						cookies.set("sofer-italiana", "3", { secure: true, sameSite: "none" });
 						setDisabled(false);
 					}}
 					type="button"

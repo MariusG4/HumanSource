@@ -10,17 +10,18 @@ import query from "@/lib/apollo/queries/blog/getTopBlogs";
 import { Iparams } from "@/interfaces/params";
 import { IlastBlogs } from "@/interfaces/blog";
 
+
 const responsive = {
 	superLargeDesktop: {
 		breakpoint: { max: 4000, min: 3000 },
 		items: 3,
 	},
 	desktop: {
-		breakpoint: { max: 3000, min: 1024 },
+		breakpoint: { max: 3000, min: 1224 },
 		items: 3,
 	},
 	tablet: {
-		breakpoint: { max: 1024, min: 464 },
+		breakpoint: { max: 1224, min: 464 },
 		items: 2,
 	},
 	mobile: {
@@ -42,7 +43,7 @@ const CustomButtonGroupAsArrows = ({ next, previous }: { next: () => void; previ
 		</>
 	);
 };
-const CaruselBloguri = ({ params }: Iparams) => {
+const CaruselBloguri = ({ params }: { params: { lang: string } }) => {
 	const capitalizedParams = params.lang.toLocaleUpperCase();
 	const { data }: IlastBlogs = useSuspenseQuery(query, {
 		variables: {
@@ -52,9 +53,8 @@ const CaruselBloguri = ({ params }: Iparams) => {
 			orderBy: [{ dateCreated: "desc" }],
 		},
 	});
-	if (!data) return <h1>No data...</h1>;
-	const blogs = data.blogs;
 
+	const blogs = data.blogs;
 
 	return (
 		<div className="relative flex w-full md:px-6">
@@ -93,8 +93,6 @@ const CaruselBloguri = ({ params }: Iparams) => {
 				{blogs
 					.filter(({}, index) => index <= 5)
 					.map(({ id, dateCreated, title, content, slug, photo }, index) => {
-						const paragraph = content.document[0].children[0].text;
-
 						let imageUrl = photo?.image?.publicUrlTransformed;
 
 						return (
@@ -103,7 +101,7 @@ const CaruselBloguri = ({ params }: Iparams) => {
 								slug={slug}
 								data={dateCreated}
 								titlu={title}
-								paragraph={paragraph}
+								content={content}
 								imageUrl={imageUrl}
 								id={id}
 								key={id}

@@ -1,5 +1,7 @@
 import { useTranslation } from "@/app/i18n/client";
+import CheckIfDefaulthLang from "@/utils/isDefaultLang";
 import { Menu, MenuHandler, MenuItem, MenuList, Typography } from "@material-tailwind/react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -15,7 +17,7 @@ export function NavItem({ label, href, params, handleCloseMenu, pathname }: INav
 	return (
 		<Link
 			className=" flex items-center  visited:text-red-600 md:h-[60px] md:justify-center"
-			href={`/${params.lang}/${href}`}
+			href={CheckIfDefaulthLang(params, href)}
 		>
 			<Typography
 				variant="small"
@@ -212,23 +214,35 @@ export function NavList({
 				pathname={pathname}
 				handleCloseMenu={handleCloseMenu}
 				params={params}
-				href={`about`}
+				href={`/about`}
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-ignore
 				label={t("despre")}
 			/>
-			<NavItem pathname={pathname} handleCloseMenu={handleCloseMenu} params={params} href={`jobs`} label={t("munca")} />
 			<NavItem
 				pathname={pathname}
 				handleCloseMenu={handleCloseMenu}
 				params={params}
-				href={`contact`}
+				href={`/jobs`}
+				label={t("munca")}
+			/>
+			<NavItem
+				pathname={pathname}
+				handleCloseMenu={handleCloseMenu}
+				params={params}
+				href={`/contact`}
 				label={t("contact")}
 			/>
-			<DropdownServicii href={`services`} pathname={pathname} params={params} handleCloseMenu={handleCloseMenu} t={t} />
+			<DropdownServicii
+				href={`/services`}
+				pathname={pathname}
+				params={params}
+				handleCloseMenu={handleCloseMenu}
+				t={t}
+			/>
 			{/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment 
             // @ts-ignore */}
-			<NavItem pathname={pathname} handleCloseMenu={handleCloseMenu} params={params} href={`blog`} label={t("blog")} />
+			<NavItem pathname={pathname} handleCloseMenu={handleCloseMenu} params={params} href={`/blog`} label={t("blog")} />
 			<DropdownAplica href={`form/`} pathname={pathname} params={params} handleCloseMenu={handleCloseMenu} t={t} />
 		</ul>
 	);

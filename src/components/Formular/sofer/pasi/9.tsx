@@ -19,7 +19,7 @@ const Pas9Trasport = ({ register, setDisabled }: any) => {
 					id="salariuDorit"
 					onChange={(e) => {
 						const value = e.target.value;
-						cookies.set("sofer-salariu-dorit", value);
+						cookies.set("sofer-salariu-dorit", value, { secure: true, sameSite: "none" });
 						setDisabled(false);
 						!isNaN(+value) ? setDisabled(false) : setDisabled(true);
 					}}

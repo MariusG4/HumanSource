@@ -1,14 +1,18 @@
-import AvantajeSection from "@/components/Home/Avantaje/AvantajeSection";
-import BlogSection from "@/components/Home/Blog/BlogSection";
+import dynamic from "next/dynamic";
+
 import HeroSection from "@/components/Home/Hero/HeroSection";
-import IntrebariSection from "@/components/Home/Intrebari/IntrebariSection";
-import NevoiSection from "@/components/Home/Nevoi/NevoiSection";
-import ParteneriSection from "@/components/Home/Parteneri/ParteneriSection";
-import ServiciiSection from "@/components/Home/Servicii/ServiciiSection";
 
-import CookieConsent from "@/components/cookies/CookiesConsent";
+import Spinner from "@/components/Spinner/Spinner";
 
+const AvantajeSection = dynamic(() => import("@/components/Home/Avantaje/AvantajeSection"));
+const BlogSection = dynamic(() => import("@/components/Home/Blog/BlogSection"));
+const IntrebariSection = dynamic(() => import("@/components/Home/Intrebari/IntrebariSection"));
+const NevoiSection = dynamic(() => import("@/components/Home/Nevoi/NevoiSection"));
+const TestimonialSection = dynamic(() => import("@/components/Home/Testimonial/TestimonialSection"));
+const ServiciiSection = dynamic(() => import("@/components/Home/Servicii/ServiciiSection"));
 import type { Metadata } from "next";
+
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
 	title: "Agentie de plasare forta de munca - HumanSource ",
@@ -50,9 +54,15 @@ export default function Home({ params }: { params: { lang: string; country: stri
 					className="mx-1 flex flex-col items-center justify-center  rounded-b-[10px]  bg-white pb-12  md:mx-2 md:px-16 "
 					id="background"
 				>
-					<BlogSection params={params} />
-
-					<ParteneriSection />
+					<Suspense fallback={<Spinner />}>
+						<BlogSection params={params} />
+					</Suspense>
+				</div>
+				<div
+					className="mx-1 flex flex-col items-center justify-center  bg-white pb-10 md:mx-2 md:px-16  md:pb-[0px] "
+					id="background"
+				>
+					<TestimonialSection />
 				</div>
 			</div>
 		</div>

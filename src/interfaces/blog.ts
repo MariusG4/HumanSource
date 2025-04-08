@@ -12,7 +12,7 @@ export type IPaginationData = {
 				document: DocumentProp;
 			};
 			dateCreated: string;
-
+			category: { name: string; id: string };
 			title: string;
 			photo: {
 				altText: string;
@@ -35,7 +35,7 @@ export interface IPaginatedData {
 	dateCreated: string;
 	slug: string;
 	title: string;
-	categories: { name: string }[];
+	categories: { name: string; id: string }[];
 	photo: {
 		altText: string;
 		id: string;
@@ -89,6 +89,7 @@ export interface IdataBlog {
 
 export interface IlastBlogs {
 	data: {
+		error: ApolloError | undefined;
 		blogs: [
 			{
 				id: string;
@@ -96,7 +97,7 @@ export interface IlastBlogs {
 				dateCreated: string;
 				title: string;
 				content: {
-					document: { children: [{ text: string }] }[];
+					document: { type: string; children: [{ text: string }] }[];
 				};
 				photo: {
 					altText: string;
@@ -116,6 +117,7 @@ export interface IBlog {
 			slug: string;
 			dateCreated: string;
 			title: string;
+			categories: [{ id: string; name: string }];
 			content: {
 				document: DocumentProp;
 			};
@@ -143,7 +145,7 @@ export interface IBlogs {
 				content: {
 					document: DocumentProp;
 				};
-
+				category: { id: string; name: string };
 				tags: [{ name: string }];
 				author: { name: string };
 				photo: {

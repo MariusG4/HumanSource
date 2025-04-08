@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import Pas1Medical from "@/components/Formular/medic/pasi/1";
 
 import Pas2Medical from "@/components/Formular/medic/pasi/2";
@@ -10,7 +10,7 @@ import Pas6Medical from "@/components/Formular/medic/pasi/6";
 import Pas7Medical from "@/components/Formular/medic/pasi/7";
 import Pas8Medical from "@/components/Formular/medic/pasi/8";
 import Pas9Medical from "@/components/Formular/medic/pasi/9";
-
+import Pas10Medical from "@/components/Formular/medic/pasi/10";
 import { useMultistepForm } from "@/components/Formular/useMultistepForm";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import Link from "next/link";
@@ -22,6 +22,8 @@ import { useRouter } from "next/navigation";
 import NavigatieFormularMedic from "@/components/Formular/medic/NavigatieFormularMedic";
 import { useCookies } from "next-client-cookies";
 import { useTranslation } from "@/app/i18n/client";
+import CheckIfDefaulthLang from "@/utils/isDefaultLang";
+
 export type MedicalSearchParamsType = {
 	absolvire: string;
 	amg: string;
@@ -33,6 +35,7 @@ export type MedicalSearchParamsType = {
 	locatia: string;
 	subDomeniu: string;
 	ultimuSalar: string;
+	nrTelefon: string;
 };
 type Inputs = {
 	experienta: string;
@@ -44,6 +47,7 @@ type Inputs = {
 	ultimulSalariu: string;
 	locatia: string;
 	curs: string;
+	nrTelefon: string;
 };
 
 const FormularMedic = ({ params }: { params: { lang: string; country: string } }) => {
@@ -60,6 +64,7 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 		locatia: "",
 		subDomeniu: "",
 		ultimuSalar: "",
+		nrTelefon: "",
 	});
 
 	const {
@@ -79,12 +84,14 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 			ultimulSalariu: cookies.get("medic-ultimu-salariu") || "",
 			locatia: cookies.get("medic-locatia") || "",
 			curs: cookies.get("medic-cursItaliana") || "",
+			nrTelefon: cookies.get("medic-numar-telefon") || "",
 		},
 	});
 	const { steps, currentStepIndex, isFirstStep, isLastStep, step, back, next } = useMultistepForm(
 		[
 			<Pas1Medical
 				register={register}
+				setValue={setValue}
 				setSearchParams={setSearchParams}
 				searchParams={searchParams}
 				setDisabled={setDisabled}
@@ -97,10 +104,15 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 			<Pas7Medical setSearchParams={setSearchParams} setValue={setValue} setDisabled={setDisabled} />,
 			<Pas8Medical setSearchParams={setSearchParams} register={register} setDisabled={setDisabled} />,
 			<Pas9Medical setSearchParams={setSearchParams} setValue={setValue} setDisabled={setDisabled} />,
+			<Pas10Medical register={register} setValue={setValue} setDisabled={setDisabled} />,
 		],
 		setDisabled,
 	);
-	const [addMedicalForm] = useMutation(AddMedicalForm);
+	const [addMedicalForm] = useMutation(AddMedicalForm, {
+		onCompleted(data) {
+			cookies.set("medicalFormId", data.createMedicalForm.id);
+		},
+	});
 	const router = useRouter();
 	const onSubmit: SubmitHandler<Inputs> = ({
 		absolvire,
@@ -112,6 +124,7 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 		locatia,
 		domeniu,
 		ultimulSalariu,
+		nrTelefon,
 	}) => {
 		try {
 			addMedicalForm({
@@ -127,42 +140,50 @@ const FormularMedic = ({ params }: { params: { lang: string; country: string } }
 						locatia: locatia,
 						subDomeniu: domeniu,
 						ultimuSalar: ultimulSalariu,
+						phone: nrTelefon,
 					},
 				},
 			});
-		
-				router.push(`/${params.lang}/jobs?domeniu=medical&subDomeniu=${domeniu}&locatia=${locatia}`);
-				cookies.remove("medic-experienta");
-				cookies.remove("medic-subDomeniu");
-				cookies.remove("medic-bac");
-				cookies.remove("medic-amg");
-				cookies.remove("medic-absolvire");
-				cookies.remove("medic-experientaLimba");
-				cookies.remove("medic-ultimu-salariu");
-				cookies.remove("medic-locatia");
-				cookies.remove("medic-cursItaliana");
-		
+			router.push(CheckIfDefaulthLang(params, `/jobs?domeniu=medical&subDomeniu=${domeniu}&locatia=${locatia}`));
+
+			cookies.remove("medic-experienta");
+			cookies.remove("medic-subDomeniu");
+			cookies.remove("medic-bac");
+			cookies.remove("medic-amg");
+			cookies.remove("medic-absolvire");
+			cookies.remove("medic-experientaLimba");
+			cookies.remove("medic-ultimu-salariu");
+			cookies.remove("medic-locatia");
+			cookies.remove("medic-cursItaliana");
+			cookies.remove("medic-numar-telefon");
 		} catch (error) {
 			console.log(error);
 		}
 	};
 	const { t } = useTranslation(params.lang, "formularMuncitor");
+	const checkKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
+		if (e.key === "Enter") e.preventDefault();
+	};
 	return (
 		<div className="container mx-auto flex flex-col px-5 pb-9 lg:px-0">
 			<Breadcrumbs>
-				<Link className="text-gri-brand hover:text-rosu-brand" href={`/${params.lang}/`}>
+				<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/")}>
 					{/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment 
               	// @ts-ignore */}
 					{t("breadHome")}
 				</Link>
-				<Link className="text-gri-brand hover:text-rosu-brand" href={`/${params.lang}/form/worker`}>
+				<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/form/worker")}>
 					{t("breadFormular")}
 				</Link>
-				<Link className="text-red-600" href={`/${params.lang}/form/worker`}>
+				<Link className="text-red-600" href={CheckIfDefaulthLang(params, "/form/worker")}>
 					{t("breadMedical")}
 				</Link>
 			</Breadcrumbs>
-			<form onSubmit={handleSubmit(onSubmit)} className="relative  rounded-2xl bg-alb-site px-5 pt-8 ">
+			<form
+				onKeyDown={(e) => checkKeyDown(e)}
+				onSubmit={handleSubmit(onSubmit)}
+				className="relative  rounded-2xl bg-alb-site px-5 pt-8 "
+			>
 				{step}
 				<NavigatieFormularMedic
 					disabled={disabled}

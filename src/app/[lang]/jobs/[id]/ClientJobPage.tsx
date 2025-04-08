@@ -2,24 +2,24 @@
 
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
+import FormularAplica from "@/components/Munca/formularAplica";
+import { IJob } from "@/interfaces/job";
+import query from "@/lib/apollo/queries/job/getJobById";
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import { Typography } from "@material-tailwind/react";
 import Link from "next/link";
 import { FC } from "react";
-import FormularAplica from "@/components/Munca/formularAplica";
-import { Typography } from "@material-tailwind/react";
+import { CiLocationOn } from "react-icons/ci";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { FiTruck } from "react-icons/fi";
-import { CiLocationOn } from "react-icons/ci";
-import { IJob } from "@/interfaces/job";
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-import query from "@/lib/apollo/queries/job/getJobById";
 
-import { useSearchParams } from "next/navigation";
 import { useTranslation } from "@/app/i18n/client";
+import CheckIfDefaulthLang from "@/utils/isDefaultLang";
+import { useSearchParams } from "next/navigation";
 
 interface IpageProps {
 	params: { lang: string; title: string };
 }
-
 
 const CardJob = ({
 	jobCategory,
@@ -52,7 +52,9 @@ const CardJob = ({
 
 const ClientJobPage: FC<IpageProps> = ({ params }) => {
 	const searchParams = useSearchParams();
-	const idJob = searchParams.get("id");
+	const idJob = searchParams.get("id") as string;
+	const category = searchParams.get("category") as string;
+
 	const { data }: IJob = useSuspenseQuery(query, {
 		variables: {
 			where: {
@@ -74,13 +76,13 @@ const ClientJobPage: FC<IpageProps> = ({ params }) => {
 		<div className="container mx-auto grid ">
 			<div className="container mx-auto flex flex-col px-5 md:px-0">
 				<Breadcrumbs>
-					<Link className="text-gri-brand hover:text-rosu-brand" href={`/${params.lang}`}>
+					<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/")}>
 						{t("breadHome")}
 					</Link>
-					<Link className="text-gri-brand hover:text-rosu-brand" href={`/${params.lang}/jobs`}>
+					<Link className="text-gri-brand hover:text-rosu-brand" href={CheckIfDefaulthLang(params, "/jobs")}>
 						{t("breadCurrent")}
 					</Link>
-					<Link className="text-rosu-brand" href={`/${params.lang}/jobs`}>
+					<Link className="flex  text-rosu-brand " href={CheckIfDefaulthLang(params, "/jobs")}>
 						{title}
 					</Link>
 				</Breadcrumbs>
@@ -172,7 +174,6 @@ const ClientJobPage: FC<IpageProps> = ({ params }) => {
 							</Typography>
 							<ol className="ml-5 flex list-disc flex-col gap-2 md:ml-0">
 								<li>
-									{" "}
 									<Typography className="text-[16px] font-[350] text-gri-brand " variant="paragraph">
 										{whyWork}
 									</Typography>
@@ -183,9 +184,8 @@ const ClientJobPage: FC<IpageProps> = ({ params }) => {
 							{t("indemn")}
 						</Typography>
 					</div>
-					<div className="flex rounded-2xl bg-alb-site p-5 md:w-1/2 md:p-10">
-						<FormularAplica title={title} params={params} id={id} />
-					</div>
+
+					<FormularAplica title={title} category={category} params={params} id={id} />
 				</div>
 			</div>
 		</div>
