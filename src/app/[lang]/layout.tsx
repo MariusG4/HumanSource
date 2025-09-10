@@ -6,7 +6,10 @@ import { Metadata, Viewport } from "next";
 import Footer from "./Footer";
 import Header from "./Header";
 import { cookies } from "next/headers";
-import CookieConsent from "@/components/cookies/CookiesConsent";
+// CookieConsent component is disabled in favor of CookieYes script
+// import CookieConsent from "@/components/cookies/CookiesConsent";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Script from "next/script";
 
 export const viewport: Viewport = {
 	width: "device-width",
@@ -138,13 +141,23 @@ export default function RootLayout({
 }) {
 	return (
 		<html id="root" lang={params.lang}>
+			<head>
+				{/* Start cookieyes banner */}
+				<Script
+					id="cookieyes"
+					src="https://cdn-cookieyes.com/client_data/07230a89da453e6d9be0a61f/script.js"
+					strategy="beforeInteractive"
+				/>
+				{/* End cookieyes banner */}
+			</head>
 			<body
 				className={`${madera.variable}  m-0 mx-auto flex  items-center justify-center  overflow-x-hidden bg-gri-deschis-bg font-sans text-gri-brand`}
 			>
+				<GoogleAnalytics />
 				<ClientCookiesProvider value={cookies().getAll()}>
 					<Providers>
 						<div className="relative grid min-h-screen w-full grid-cols-1 overflow-hidden  " id="site-container">
-							<CookieConsent params={params} />
+							{/* CookieConsent component is disabled */}
 							<Header params={params} />
 
 							<main className=" z-30 mt-14 flex w-full flex-col  ">

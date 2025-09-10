@@ -66,9 +66,9 @@ const Footer = ({ params }: { params: { lang: string } }) => {
 							<h6 className="font-bold">{t("4.titlu")}</h6>
 							<hr className="h-2 w-full" />
 							<div className="flex flex-col items-center gap-8 md:items-start">
-								<FooterNavItem params={params} href={`about`} label={t("4.politica")} />
-								<FooterNavItem params={params} href={`blog`} label={t("4.termeni")} />
-								<FooterNavItem params={params} href={`contact`} label={t("4.cookies")} />
+								<FooterNavItem params={params} href={`privacy-policy`} label={t("4.politica")} />
+								<FooterNavItem params={params} href={`terms-conditions`} label={t("4.termeni")} />
+								<FooterNavItem params={params} href={`cookie-policy`} label={t("4.cookies")} />
 							</div>
 						</div>
 					</div>

@@ -18,7 +18,7 @@ interface ICardJob {
 	src?: StaticImageData;
 	category: { name: string };
 	id: string;
-	salary: string;
+	salary?: string; // Made optional since it's no longer displayed
 	params: { lang: string; country: string };
 }
 
@@ -65,9 +65,6 @@ const CardJob = ({ params, data, titlu, descriere, id, src, salary, category }: 
 							<ArrowSmallRightIcon strokeWidth={1} className=" ml-1 h-5 w-5 " />
 						</Button>
 					</Link>
-					<span className="text-sm font-bold tracking-[0.0625]">
-						{salary} <span className="ml-2">$</span>{" "}
-					</span>
 				</div>
 			</div>
 		</div>
